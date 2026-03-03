@@ -16,6 +16,11 @@ export class App {
   handleEditTask(selectedTask: ITask) {
     console.log('Tarefa editada:', selectedTask);
   }
+
+  handleDeleteTask(selectedTask: ITask) {
+    console.log('Tarefa deletada:', selectedTask);
+  }
+
   // Adicionamos a sua lista de tarefas (Mock Data)
   tasks: ITask[] = [
     {
