@@ -2,10 +2,10 @@
 import { RouterOutlet } from '@angular/router';
 import { ITask } from './models/task.model'; // Importa a sua interface
 import { TaskCard } from './components/task-card/task-card';
-
+import { Sidebar } from './components/sidebar/sidebar';
 @Component({
   selector: 'app-root',
-  imports: [TaskCard], // Mantém o RouterOutlet para as rotas futuras
+  imports: [TaskCard, Sidebar], // Mantém o RouterOutlet para as rotas futuras
   templateUrl: './app.html', // O Angular v18 usa 'app.html' em vez de 'app.component.html'
   styleUrl: './app.css'
 })
