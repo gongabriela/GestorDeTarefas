@@ -1,9 +1,17 @@
 <div class="card-neon">
   <div class="card-header">
-    <h3>{{ task.title }}</h3>
     <span class="badge">{{ task.category }}</span>
+    <div class="card-header-buttons">
+      <button (click)="onEditTask(task)" class="edit-btn">
+        <i class="fas fa-edit"></i>
+      </button>
+      <button (click)="onDeleteTask(task)" class="delete-btn">
+        <i class="fas fa-trash"></i>
+      </button>
+    </div>
   </div>
-  
+
+  <h3>{{ task.title }}</h3> 
   <p>{{ task.description }}</p>
 
   <div class="card-footer">
