@@ -1,0 +1,63 @@
+.card-neon {
+    background-color: var(--cor-fundo-card);
+    border: 1px solid var(--cor-borda);
+    border-radius: 12px;
+    padding: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+/* Efeito de hover para parecer uma interface interativa */
+.card-neon:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: var(--cor-roxo-claro);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--cor-texto-principal);
+}
+
+.badge {
+    background: rgba(139, 233, 253, 0.1); /* Azul céu com transparência */
+    color: var(--cor-azul-ceu);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+p {
+    font-size: 0.95rem;
+    color: #b0aec4;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--cor-borda);
+    padding-top: 15px;
+    font-size: 0.85rem;
+}
+
+time {
+    color: var(--cor-roxo-claro);
+}
+
+.status-tag {
+    font-weight: 600;
+    color: var(--cor-rosa);
+}

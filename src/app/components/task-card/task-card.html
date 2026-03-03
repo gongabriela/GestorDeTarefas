@@ -1,0 +1,13 @@
+<div class="card-neon">
+  <div class="card-header">
+    <h3>{{ task.title }}</h3>
+    <span class="badge">{{ task.category }}</span>
+  </div>
+  
+  <p>{{ task.description }}</p>
+
+  <div class="card-footer">
+    <time>📅 {{ task.dueDate | date:'dd/MM/yyyy' }}</time>
+    <span class="status-tag">{{ task.status }}</span>
+  </div>
+</div>
