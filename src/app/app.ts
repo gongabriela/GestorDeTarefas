@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ITask } from './models/task.model'; // Importa a sua interface
 import { TaskCard } from './components/task-card/task-card';
@@ -13,6 +13,9 @@ export class App {
   // Mantemos o signal que o Angular criou, mas com o nome do seu projeto
   protected readonly title = signal('TaskWave');
 
+  handleEditTask(selectedTask: ITask) {
+    console.log('Tarefa editada:', selectedTask);
+  }
   // Adicionamos a sua lista de tarefas (Mock Data)
   tasks: ITask[] = [
     {
