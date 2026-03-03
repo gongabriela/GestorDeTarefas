@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700&display=swap');
+
+:root {
+    /* Fundos */
+    --cor-fundo-pagina: #1b182c;
+    --cor-fundo-card: #211e33;
+    --cor-borda: #454158;
+    
+    /* Cores de Destaque */
+    --cor-rosa: #ff95d6;
+    --cor-azul-ceu: #8be9fd;
+    --cor-banana: #ffe97d;
+    --cor-roxo-claro: #bd93f9;
+    
+    /* Texto */
+    --cor-texto-principal: #e0def4;
+    
+    /* Cores de Status */
+    --cor-verde: #50fa7b;
+    --cor-vermelho: #ff5555;
+    
+    /* Fontes */
+    --fonte-titulo: 'Outfit', sans-serif;
+    --fonte-texto: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--cor-fundo-pagina);
+    color: var(--cor-texto-principal);
+    font-family: var(--fonte-texto);
+}
+
+h1 {
+    font-family: var(--fonte-titulo);
+    color: var(--cor-banana);
+}
