@@ -1,43 +1,45 @@
-<main class="container">
-  <h1>{{ title() }}</h1>
+<div class="layout-dashboard">
+  <app-sidebar></app-sidebar>
+  <main class="container">
+    <h1>{{ title() }}</h1>
 
-  <div class="kanban-board">
-    <section class="kanban-column">
-      <h2>To Do</h2>
-      
-      @for (task of tasks; track task.id) {
+    <div class="kanban-board">
+      <section class="kanban-column">
+        <h2>To Do</h2>
         
-        @if (task.status === 'To Do') {
-          <app-task-card [task]="task" (editTask)="handleEditTask($event)" (deleteTask)="handleDeleteTask($event)"></app-task-card>
+        @for (task of tasks; track task.id) {
+          
+          @if (task.status === 'To Do') {
+            <app-task-card [task]="task" (editTask)="handleEditTask($event)" (deleteTask)="handleDeleteTask($event)"></app-task-card>
+          }
+          
         }
-        
-      }
-    </section>
+      </section>
 
-    <section class="kanban-column">
-      <h2>In Progress</h2>
-      
-      @for (task of tasks; track task.id) {
+      <section class="kanban-column">
+        <h2>In Progress</h2>
         
-        @if (task.status === 'Doing') {
-          <app-task-card [task]="task" (editTask)="handleEditTask($event)" (deleteTask)="handleDeleteTask($event)"></app-task-card>
+        @for (task of tasks; track task.id) {
+          
+          @if (task.status === 'Doing') {
+            <app-task-card [task]="task" (editTask)="handleEditTask($event)" (deleteTask)="handleDeleteTask($event)"></app-task-card>
+          }
+          
         }
-        
-      }
-    </section>
+      </section>
 
-    <section class="kanban-column">
-      <h2>Done</h2>
-      
-      @for (task of tasks; track task.id) {
+      <section class="kanban-column">
+        <h2>Done</h2>
         
-        @if (task.status === 'Done') {
-          <app-task-card [task]="task" (editTask)="handleEditTask($event)" (deleteTask)="handleDeleteTask($event)"></app-task-card>
+        @for (task of tasks; track task.id) {
+          
+          @if (task.status === 'Done') {
+            <app-task-card [task]="task" (editTask)="handleEditTask($event)" (deleteTask)="handleDeleteTask($event)"></app-task-card>
+          }
+          
         }
-        
-      }
-    </section>
-  
-  </div>
-</main>
-
+      </section>
+    
+    </div>
+  </main>
+</div>
