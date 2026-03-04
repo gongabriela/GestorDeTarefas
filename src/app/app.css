@@ -5,9 +5,9 @@
     align-items: start;
     margin-top: 30px;
 }
-
+/*APAGAR remover bordas pq o layout n tem borda nas colunas*/
 .kanban-column {
-    background-color: var(--cor-fundo-card-esquerdo);
+    background-color: var(transparent);
     border: 1px solid var(--cor-borda);
     border-radius: 12px;
     padding: 20px;
@@ -26,4 +26,7 @@
 .layout-dashboard {
     display: grid;
     grid-template-columns: 250px 1fr;
+    min-height: 100vh; /*resolve um buraquinho na sidebar embaixo*/
+    gap: 20px;
+
 }

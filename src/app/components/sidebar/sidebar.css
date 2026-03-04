@@ -1,3 +1,45 @@
-.app-sidebar {
-    background-color: var(--cor-fundo-card);
+.sidebar {
+  height: 100%;
+  background-color: var(--cor-fundo-sidebar);
+  padding: 10px; /*resolve um buraquinho que ficou na sidbear*/
+  border: 1px solid var(--cor-borda);
 }
+
+.sidebar-nav-title, .task-categories-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: var(--fonte-titulo);
+  color: var(--cor-roxo-claro);
+  margin-bottom: 10px;
+}
+
+.navigation-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.all-tasks-btn, .to-do-list-btn, .completed-btn {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 15px;
+  background-color: transparent;
+  border: none;
+  color: var(--cor-texto-principal);
+  font-size: 1.1rem;
+  font-family: var(--fonte-texto);
+  cursor: pointer;
+  padding: 10px;
+}
+
+.all-tasks-btn:hover, .to-do-list-btn:hover, .completed-btn:hover {
+  background-color: var(--cor-fundo-pagina);
+  border: 1px solid var(--cor-azul-ceu);
+  border-radius: 9px;
+  transform: translateY(-5px);
+  transition: 0.3s;
+  color: var(--cor-azul-ceu);
+}
+

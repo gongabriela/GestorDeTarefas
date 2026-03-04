@@ -5,7 +5,8 @@
 :root {
     /* Fundos */
     --cor-fundo-pagina: #1b182c;
-    --cor-fundo-card: #211e33;
+    --cor-fundo-sidebar: #211e33;
+    --cor-fundo-card: #211e35;
     --cor-borda: #454158;
     
     /* Cores de Destaque */
@@ -30,9 +31,13 @@ body {
     background-color: var(--cor-fundo-pagina);
     color: var(--cor-texto-principal);
     font-family: var(--fonte-texto);
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 h1 {
     font-family: var(--fonte-titulo);
     color: var(--cor-banana);
 }
+
