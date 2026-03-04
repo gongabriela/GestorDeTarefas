@@ -34,10 +34,9 @@ export class App implements OnInit {
     { title: 'In Progress', value: 2, color: 'var(--cor-azul-ceu)' },
     { title: 'Overdue', value: 4, color: 'var(--cor-rosa)' }
   ];
-  task: ITask[] = [];
+  tasks: ITask[] = [];
 
   ngOnInit() {
-    this.task = this.taskService.getTasks();
+    this.tasks = this.taskService.getTasks();
   }
-  
 }

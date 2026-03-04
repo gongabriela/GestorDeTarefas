@@ -10,14 +10,18 @@ export class TaskService {
   constructor () {};
 
   getTasks() : ITask[] {
+    if (typeof localStorage !== 'undefined') {
     const data = localStorage.getItem(this.STORAGE_KEY);
     return data ? JSON.parse(data) : [];
+    }
+    return [];
   };
 
   addTask(task: ITask): void {
     const tasks = this.getTasks();
     tasks.push(task);
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(tasks));
+    if (typeof localStorage !== 'undefined')
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(tasks));
   };
 
 }

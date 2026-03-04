@@ -23,7 +23,7 @@
 
 .kanban-column h2 {
     color: var(--cor-roxo-claro);
-    fnt-family: var(--fonte-titulo);
+    font-family: var(--fonte-titulo);
     text-align: center;
     border-bottom: 2px solid var(--cor-borda);
     /*padding-bottom: 10px;
