@@ -1,17 +1,19 @@
- import { Component, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ITask } from './models/task.model'; // Importa a sua interface
 import { TaskCard } from './components/task-card/task-card';
 import { Sidebar } from './components/sidebar/sidebar';
+import { Navbar } from './components/navbar/navbar';
+
 @Component({
   selector: 'app-root',
-  imports: [TaskCard, Sidebar], // Mantém o RouterOutlet para as rotas futuras
+  imports: [TaskCard, Sidebar, Navbar], // Mantém o RouterOutlet para as rotas futuras
   templateUrl: './app.html', // O Angular v18 usa 'app.html' em vez de 'app.component.html'
   styleUrl: './app.css'
 })
 export class App {
   // Mantemos o signal que o Angular criou, mas com o nome do seu projeto
-  protected readonly title = signal('TaskWave');
+  //protected readonly title = signal();
 
   handleEditTask(selectedTask: ITask) {
     console.log('Tarefa editada:', selectedTask);
