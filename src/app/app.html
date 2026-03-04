@@ -1,7 +1,12 @@
 <app-navbar></app-navbar>
 <div class="layout-dashboard">
   <app-sidebar></app-sidebar>
-  <main class="container">
+  <main class="main-container">
+    <div class="kpi-card-container">
+      @for (kpi of kpiList; track kpi.title) {
+        <app-kpi-card [kpi]="kpi"></app-kpi-card>
+      }
+    </div>
     <div class="kanban-board">
       <section class="kanban-column">
         <h2>To Do</h2>

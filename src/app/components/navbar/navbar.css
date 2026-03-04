@@ -1,13 +1,18 @@
 .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 20px;
-    padding-right: 20px;
-    background-color: var(--cor-fundo-card);
-    border: 1px solid var(--cor-borda);
-    /*APAGAR colocar efeito fosco na navbar*/
-    /*APAGAR colocar navbar fixa*/
+    
+    padding: 15px 40px;
+    box-sizing: border-box;
+
+    background-color: rgba(27, 24, 44, 0.9); 
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--cor-borda);
 }
 
 .navbar-menu {
@@ -22,7 +27,7 @@
     align-items: center;
     gap: 10px;
     border: 1px solid var(--cor-borda);
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 10px;
     background-color: var(--cor-fundo-card);
     color: var(--cor-texto-principal);
