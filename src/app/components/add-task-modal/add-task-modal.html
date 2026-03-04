@@ -1,0 +1,66 @@
+<div class="modal-overlay">
+    <div class="add-task-modal">
+        <div class="modal-header">
+            <div class="warning-container">
+                <p class="modal-header-warning">ACTION REQUIRED</p>
+                <button class="close-button" (click)="onCancel()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="header-text">
+                <h2 class="add-task-modal-title">Create New Task</h2>
+                <p>Fill in the details below to organize your next big goal.</p>
+            </div>
+        </div>
+
+        <section class="form-container">
+            <div class="form-group">
+                <label for="task-title">Task Title</label>
+                <input type="text" id="task-title" placeholder="e.g. Design System Implementation">
+            </div>
+
+            <div class="form-group">
+                <label for="task-description">Description</label>
+                <textarea id="task-description" placeholder="Describe the steps or requirements for this task..." rows="4"></textarea>
+            </div>
+
+            <div class="form-dropdown-container">
+                <div class="form-group half-width">
+                    <label for="task-category">Category</label>
+                    <select id="task-category">
+                        <option value="all">Choose a category</option>
+                    </select>
+                </div>
+
+                <div class="form-group half-width">
+                    <label for="task-status">Status</label>
+                    <select id="task-status">
+                        <option value="todo">To Do</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="task-due-date form-group">
+                <label for="due-date">Due Date</label>
+                <div class="date-input-container">
+                    <input type="date" id="due-date">
+                </div>
+                <p class="form-error-message">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    Please select a future date. The date cannot be in the past.
+                </p>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-create">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    Create Task
+                </button>
+                <button class="btn-cancel" (click)="onCancel()">Cancel</button>
+            </div>
+        </section>
+    </div>
+</div>
+

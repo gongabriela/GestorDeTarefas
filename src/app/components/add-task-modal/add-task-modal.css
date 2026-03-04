@@ -1,0 +1,185 @@
+/* Utilizando variáveis do styles.css */
+
+/* A Capa Escura */
+.modal-overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw; 
+    height: 100vh; 
+    background-color: rgba(0, 0, 0, 0.75); 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; 
+    
+    /* NOVO: Garante que há sempre espaço à volta da janela, mesmo em ecrãs minúsculos */
+    padding: 20px; 
+    box-sizing: border-box;
+}
+
+/* A Janela Principal */
+.add-task-modal {
+    background-color: var(--cor-fundo-card); 
+    border-radius: 12px;
+    
+    /* NOVO: Ajustei o padding e a largura para se parecer mais com o teu design original */
+    padding: 25px 30px; 
+    width: 100%;
+    max-width: 550px; 
+    
+    border: 1px solid var(--cor-borda); 
+    font-family: var(--fonte-texto); 
+    
+    /* AS REGRAS DE OURO PARA O TAMANHO NO ECRÃ 1024px */
+    max-height: 85vh; /* A janela vai ocupar no máximo 85% da altura do ecrã (deixa a tal margem em cima e em baixo) */
+    overflow-y: auto; /* Se o ecrã for muito pequeno, cria uma barra de scroll interna na janela */
+    box-sizing: border-box;
+}
+
+/* BÓNUS: Deixar a barra de scroll interna bonita e invisível se não for precisa */
+.add-task-modal::-webkit-scrollbar {
+    width: 6px;
+}
+.add-task-modal::-webkit-scrollbar-track {
+    background: transparent;
+}
+.add-task-modal::-webkit-scrollbar-thumb {
+    background: var(--cor-borda);
+    border-radius: 10px;
+}
+
+/* Modal Header Styles */
+.modal-header {
+    margin-bottom: 25px;
+}
+
+.warning-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.modal-header-warning {
+    color: var(--cor-rosa); /* #ff95d6 */
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    color: var(--cor-texto-principal); /* #e0def4 */
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0;
+}
+
+.add-task-modal-title {
+    color: var(--cor-banana); /* #ffe97d */
+    font-family: var(--fonte-titulo); /* 'Outfit', sans-serif */
+    font-weight: 700;
+    font-size: 2rem;
+    margin: 0 0 10px 0;
+}
+
+.header-text p {
+    color: #a09eb5; /* Cor cinza secundária baseada no layout */
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Form Styles */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-group input, 
+.form-group textarea, 
+.form-group select {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--cor-borda); /* #454158 */
+    border-radius: 8px;
+    color: white;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.form-group input::placeholder, 
+.form-group textarea::placeholder {
+    color: #666; /* Placeholder secundário */
+}
+
+/* Dropdowns Container */
+.form-dropdown-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.half-width {
+    width: 48%;
+}
+
+/* Date Input Customization */
+.date-input-container input[type="date"] {
+    width: 100%;
+    color: #666; /* Ajustando a cor para quando não há data selecionada */
+}
+
+.form-error-message {
+    color: var(--cor-vermelho); /* #ff5555 */
+    font-size: 0.8rem;
+    margin: 5px 0 0 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Action Buttons */
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: flex-end; /* Alinhando os botões à direita */
+}
+
+.btn-create, .btn-cancel {
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-create {
+    background-color: var(--cor-azul-ceu); /* #8be9fd */
+    color: var(--cor-fundo-pagina); /* #1b182c */
+    border: none;
+}
+
+.btn-cancel {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--cor-texto-principal); /* #e0def4 */
+    border: none;
+}

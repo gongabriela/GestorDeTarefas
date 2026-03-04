@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-navbar',
@@ -6,4 +7,12 @@ import { Component } from '@angular/core';
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })
-export class Navbar {}
+export class Navbar {
+  //APAGAR 1. Criamos o "megafone"
+  @Output() openTaskModal = new EventEmitter<void>();
+
+  //APAGAR 2. Criamos a função que vai apertar o gatilho do megafone
+  onAddTaskClick() {
+    this.openTaskModal.emit(); 
+  }
+}
