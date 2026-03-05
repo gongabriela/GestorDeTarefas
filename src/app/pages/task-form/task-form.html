@@ -13,28 +13,37 @@
             </div>
         </div>
 
-        <section class="form-container">
+        <form [formGroup]="taskForm" class="form-container">
             <div class="form-group">
                 <label for="task-title">Task Title</label>
-                <input type="text" id="task-title" placeholder="e.g. Design System Implementation">
+                <input type="text" 
+                    id="task-title" 
+                    formControlName="title" 
+                    placeholder="e.g. Design System Implementation"
+                    [ngClass]="{ 'input-error': taskForm.get('title')?.invalid && taskForm.get('title')?.touched }">
+                @if (taskForm.get('title')?.invalid && taskForm.get('title')?.touched) {
+                    <p class="form-error-text">
+                        <i class="fa-solid fa-circle-exclamation"></i> Title is required.
+                    </p>
+                }
             </div>
 
             <div class="form-group">
                 <label for="task-description">Description</label>
-                <textarea id="task-description" placeholder="Describe the steps or requirements for this task..." rows="4"></textarea>
+                <textarea id="task-description" formControlName="description" placeholder="Describe the steps or requirements for this task..." rows="4"></textarea>
             </div>
 
             <div class="form-dropdown-container">
                 <div class="form-group half-width">
                     <label for="task-category">Category</label>
-                    <select id="task-category">
+                    <select id="task-category" formControlName="category">
                         <option value="all">Choose a category</option>
                     </select>
                 </div>
 
                 <div class="form-group half-width">
                     <label for="task-status">Status</label>
-                    <select id="task-status">
+                    <select id="task-status" formControlName="status">
                         <option value="todo">To Do</option>
                         <option value="in-progress">In Progress</option>
                         <option value="completed">Completed</option>
@@ -45,7 +54,7 @@
             <div class="task-due-date form-group">
                 <label for="due-date">Due Date</label>
                 <div class="date-input-container">
-                    <input type="date" id="due-date">
+                    <input type="date" id="due-date" formControlName="dueDate">
                 </div>
                 <p class="form-error-message">
                     <i class="fa-solid fa-circle-exclamation"></i>
@@ -60,7 +69,6 @@
                 </button>
                 <button class="btn-cancel" (click)="onCancel()">Cancel</button>
             </div>
-        </section>
+        </form>
     </div>
 </div>
-

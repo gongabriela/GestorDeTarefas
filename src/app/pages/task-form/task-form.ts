@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-task-form',
-  imports: [ ReactiveFormsModule],
+  imports: [ ReactiveFormsModule, CommonModule],
   templateUrl: './task-form.html',
   styleUrl: './task-form.css',
 })
