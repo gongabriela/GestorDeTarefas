@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-task-form',
@@ -12,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class TaskForm {
 
   taskForm = new FormGroup({
-    title: new FormControl('', [Validators.required]),
+    title: new FormControl('', [Validators.required, noWhitespaceValidator]),
     description: new FormControl(''),
     category: new FormControl('Work', [Validators.required]),
     status: new FormControl('To Do', [Validators.required]),
@@ -25,4 +26,15 @@ export class TaskForm {
   onCancel() {
     this.location.back();
   }
+}
+
+export function noWhitespaceValidator(control: AbstractControl): ValidationErrors | null {
+  if (!control.value || typeof control.value !== 'string') {
+    return null;
+  }
+  const isWhitespace = control.value.trim().length === 0;
+  if (isWhitespace) {
+    return { whitespace: true };
+  }
+  return null;
 }

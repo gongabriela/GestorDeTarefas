@@ -26,6 +26,11 @@
                         <i class="fa-solid fa-circle-exclamation"></i> Title is required.
                     </p>
                 }
+                @if (taskForm.get('title')?.hasError('whitespace') && taskForm.get('title')?.touched) {
+                    <p class="form-error-text">
+                    <i class="fa-solid fa-circle-exclamation"></i> Title cannot contain only spaces. Please enter a valid name.
+                    </p>
+                }
             </div>
 
             <div class="form-group">
