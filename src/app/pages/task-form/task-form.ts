@@ -15,8 +15,8 @@ export class TaskForm {
   taskForm = new FormGroup({
     title: new FormControl('', [Validators.required, noWhitespaceValidator]),
     description: new FormControl(''),
-    category: new FormControl('Work', [Validators.required]),
-    status: new FormControl('To Do', [Validators.required]),
+    category: new FormControl('', [Validators.required]),
+    status: new FormControl('', [Validators.required]),
     dueDate: new FormControl('', [Validators.required]),
   });
 

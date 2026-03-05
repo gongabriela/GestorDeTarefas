@@ -41,30 +41,50 @@
             <div class="form-dropdown-container">
                 <div class="form-group half-width">
                     <label for="task-category">Category</label>
-                    <select id="task-category" formControlName="category">
-                        <option value="all">Choose a category</option>
+                    <select id="task-category" 
+                            formControlName="category"
+                            [ngClass]="{ 'input-error': taskForm.get('category')?.invalid && taskForm.get('category')?.touched }">
+                        <option value="" disabled selected>Choose a category</option>
                     </select>
+                    @if (taskForm.get('category')?.invalid && taskForm.get('category')?.touched) {
+                        <p class="form-error-text">
+                            <i class="fa-solid fa-circle-exclamation"></i> Category is required.
+                        </p>
+                    }
                 </div>
 
                 <div class="form-group half-width">
                     <label for="task-status">Status</label>
-                    <select id="task-status" formControlName="status">
+                    <select id="task-status" 
+                            formControlName="status"
+                            [ngClass]="{ 'input-error': taskForm.get('status')?.invalid && taskForm.get('status')?.touched }">
+                        <option value="" disabled selected>Choose a status</option>
                         <option value="todo">To Do</option>
                         <option value="in-progress">In Progress</option>
                         <option value="completed">Completed</option>
                     </select>
+                    @if (taskForm.get('status')?.invalid && taskForm.get('status')?.touched) {
+                        <p class="form-error-text">
+                            <i class="fa-solid fa-circle-exclamation"></i> Status is required.
+                        </p>
+                    }
                 </div>
             </div>
 
             <div class="task-due-date form-group">
                 <label for="due-date">Due Date</label>
                 <div class="date-input-container">
-                    <input type="date" id="due-date" formControlName="dueDate">
+                    <input type="date" 
+                            id="due-date" 
+                            formControlName="dueDate"
+                            [ngClass]="{ 'input-error': taskForm.get('dueDate')?.invalid && taskForm.get('dueDate')?.touched }">
                 </div>
-                <p class="form-error-message">
-                    <i class="fa-solid fa-circle-exclamation"></i>
-                    Please select a future date. The date cannot be in the past.
-                </p>
+                @if (taskForm.get('dueDate')?.invalid && taskForm.get('dueDate')?.touched) {
+                    <p class="form-error-text">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        Due date is required.
+                    </p>
+                }
             </div>
 
             <div class="modal-actions">
