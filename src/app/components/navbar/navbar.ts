@@ -1,18 +1,12 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-
+import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })
 export class Navbar {
-  //APAGAR 1. Criamos o "megafone"
-  @Output() openTaskModal = new EventEmitter<void>();
 
-  //APAGAR 2. Criamos a função que vai apertar o gatilho do megafone
-  onAddTaskClick() {
-    this.openTaskModal.emit(); 
-  }
 }

@@ -1,22 +1,27 @@
 <aside class="sidebar">
     <section class="navigation-links">
         <p class="sidebar-nav-title">NAVIGATION</p>
-        <button class="all-tasks-btn">
+        
+        <a routerLink="/dashboard" routerLinkActive="active" class="sidebar-link">
             <i class="fa-solid fa-list"></i>
-            All Tasks
-        </button>
-        <button class="to-do-list-btn">
+            Dashboard
+        </a>
+
+        <a routerLink="/task-list" routerLinkActive="active" class="sidebar-link">
             <i class="fa-solid fa-clipboard-list"></i>
-            To Do List
-        </button>
-        <button class="completed-btn">
+            All Tasks
+        </a>
+
+        <a routerLink="/completed" routerLinkActive="active" class="sidebar-link">
             <i class="fa-solid fa-check"></i>
             Completed
-        </button>
-    </section>
-    <section class="task-categories">
-        <p class="task-categories-title">TASK CATEGORIES</p>
+        </a>
 
     </section>
+    
+    <section class="task-categories">
+        <p class="task-categories-title">TASK CATEGORIES</p>
+    </section>
+
 </aside>
 

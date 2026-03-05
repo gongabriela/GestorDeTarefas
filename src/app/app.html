@@ -1,3 +1,16 @@
+<app-navbar></app-navbar>
+
+<div class="layout-dashboard">
+
+  <app-sidebar></app-sidebar>
+
+  <main class="main-container">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>
+
+<!-- 
 <app-navbar (openTaskModal)="handleOpenModal()"></app-navbar>
 <div class="layout-dashboard">
   <app-sidebar></app-sidebar>
@@ -51,3 +64,4 @@
 @if (isModalOpen) {
   <app-add-task-modal (close)="closeModal()"></app-add-task-modal>
 }
+-->

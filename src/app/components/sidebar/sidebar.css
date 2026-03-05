@@ -20,7 +20,7 @@
   margin-bottom: 20px;
 }
 
-.all-tasks-btn, .to-do-list-btn, .completed-btn {
+.sidebar-link {
   display: flex;
   justify-content: start;
   align-items: center;
@@ -34,7 +34,7 @@
   padding: 10px;
 }
 
-.all-tasks-btn:hover, .to-do-list-btn:hover, .completed-btn:hover {
+.sidebar-link:hover {
   background-color: var(--cor-fundo-pagina);
   border: 1px solid var(--cor-azul-ceu);
   border-radius: 9px;
@@ -43,3 +43,11 @@
   color: var(--cor-azul-ceu);
 }
 
+
+.sidebar-link.active {
+    background-color: var(--cor-fundo-card);
+    color: var(--cor-azul-ceu);
+    border: 1px solid var(--cor-azul-ceu);
+    border-radius: 9px;
+    border-left: 3px solid var(--cor-azul-ceu);
+}

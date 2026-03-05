@@ -1,0 +1,5 @@
+<div class="kpi-card-container">
+      @for (kpi of kpiList; track kpi.title) {
+        <app-kpi-card [kpi]="kpi"></app-kpi-card>
+      }
+</div>
