@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <form [formGroup]="taskForm" class="form-container">
+        <form [formGroup]="taskForm" class="form-container" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="task-title">Task Title</label>
                 <input type="text" 
@@ -45,6 +45,10 @@
                             formControlName="category"
                             [ngClass]="{ 'input-error': taskForm.get('category')?.invalid && taskForm.get('category')?.touched }">
                         <option value="" disabled selected>Choose a category</option>
+                        <option value="design">Work</option>
+                        <option value="development">Personal</option>
+                        <option value="testing">Study</option>
+                        <option value="deployment">Urgent</option>
                     </select>
                     @if (taskForm.get('category')?.invalid && taskForm.get('category')?.touched) {
                         <p class="form-error-text">
@@ -59,9 +63,9 @@
                             formControlName="status"
                             [ngClass]="{ 'input-error': taskForm.get('status')?.invalid && taskForm.get('status')?.touched }">
                         <option value="" disabled selected>Choose a status</option>
-                        <option value="todo">To Do</option>
-                        <option value="in-progress">In Progress</option>
-                        <option value="completed">Completed</option>
+                        <option value="To Do">To Do</option>
+                        <option value="Doing">Doing</option>
+                        <option value="Done">Done</option>
                     </select>
                     @if (taskForm.get('status')?.invalid && taskForm.get('status')?.touched) {
                         <p class="form-error-text">
@@ -88,7 +92,7 @@
             </div>
 
             <div class="modal-actions">
-                <button class="btn-create">
+                <button type="submit" class="btn-create">
                     <i class="fa-solid fa-circle-plus"></i>
                     Create Task
                 </button>
