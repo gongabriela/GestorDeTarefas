@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { TaskService } from '../../services/task-service'; 
 import { ITask } from '../../models/task.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-task-form',
@@ -12,7 +13,7 @@ import { ITask } from '../../models/task.model';
   templateUrl: './task-form.html',
   styleUrl: './task-form.css',
 })
-export class TaskForm {
+export class TaskForm implements OnInit {
 
   taskForm = new FormGroup({
     title: new FormControl('', [Validators.required, noWhitespaceValidator]),
@@ -22,32 +23,92 @@ export class TaskForm {
     dueDate: new FormControl('', [Validators.required]),
   });
 
+  isEditMode = false;
+  taskToEdit: ITask | null = null;
+  
+  constructor(
+    private location: Location,
+    private taskService: TaskService,
+    private route: ActivatedRoute
+  ) {}
 
-  constructor(private location: Location, private taskService: TaskService) {}
+  ngOnInit() : void {
+    const idParam = this.route.snapshot.paramMap.get('id');
+    
+    if (idParam) {
+      this.setupEditMode(Number(idParam));
+    }
+  }
 
-  onCancel() {
+  onCancel() : void {
     this.location.back();
   }
 
   onSubmit() {
-    if (this.taskForm.valid) {
-      const formValues = this.taskForm.value;
-      const novaTarefa: ITask = {
-        id: Date.now(),
-        title: formValues.title!, //APAGAR confirmar que isto esta certo em principios solid e clean code
-        description: formValues.description || '',
-        category: formValues.category as ITask['category'],
-        status: formValues.status as ITask['status'],
-        dueDate: new Date(formValues.dueDate!),
-        createdAt: new Date()
-      };
-      this.taskService.addTask(novaTarefa);
-      console.log('Tarefa gravada com sucesso no LocalStorage:', novaTarefa);
-      this.location.back();
-    }
-    else
+    if (this.taskForm.invalid) {
       this.taskForm.markAllAsTouched();
+      return; 
+    }
+    if (this.isEditMode && this.taskToEdit) {
+      this.saveEditedTask();
+    } else {
+      this.saveNewTask();
+    }
+    this.location.back();
   }
+
+  private saveEditedTask() {
+    const formValues = this.taskForm.value;
+    
+    const tarefaAtualizada: ITask = {
+      ...this.taskToEdit!,
+      title: formValues.title!,
+      description: formValues.description || '',
+      category: formValues.category as ITask['category'],
+      status: formValues.status as ITask['status'],
+      dueDate: new Date(formValues.dueDate!),
+    };
+    
+    this.taskService.updateTask(tarefaAtualizada);
+    console.log('Tarefa atualizada com sucesso no LocalStorage!');
+  }
+
+  private saveNewTask() {
+    const formValues = this.taskForm.value;
+    
+    const novaTarefa: ITask = {
+      id: Date.now(),
+      title: formValues.title!, 
+      description: formValues.description || '',
+      category: formValues.category as ITask['category'],
+      status: formValues.status as ITask['status'],
+      dueDate: new Date(formValues.dueDate!),
+      createdAt: new Date()
+    };
+    
+    this.taskService.addTask(novaTarefa);
+    console.log('Tarefa gravada com sucesso no LocalStorage:', novaTarefa);
+  }
+
+  private setupEditMode(taskId: number) : void {
+    this.isEditMode = true;
+    this.taskToEdit = this.taskService.getTaskById(taskId) || null;
+    if (this.taskToEdit) {
+      this.prefillForm(this.taskToEdit);
+    }
+  }
+
+  private prefillForm(task: ITask) : void {
+    const dataFormatada = new Date(task.dueDate).toISOString().split('T')[0];
+    this.taskForm.patchValue({
+      title: task.title,
+      description: task.description,
+      category: task.category,
+      status: task.status,
+      dueDate: dataFormatada
+    });
+  }
+
 }
 
 export function noWhitespaceValidator(control: AbstractControl): ValidationErrors | null {

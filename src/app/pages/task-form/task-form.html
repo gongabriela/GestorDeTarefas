@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="header-text">
-                <h2 class="add-task-modal-title">Create New Task</h2>
+                <h2 class="add-task-modal-title">{{ isEditMode ? 'Edit Task' : 'Create New Task' }}</h2>
                 <p>Fill in the details below to organize your next big goal.</p>
             </div>
         </div>
@@ -93,8 +93,8 @@
 
             <div class="modal-actions">
                 <button type="submit" class="btn-create">
-                    <i class="fa-solid fa-circle-plus"></i>
-                    Create Task
+                    <i class="fa-solid" [ngClass]="isEditMode ? 'fa-floppy-disk' : 'fa-circle-plus'"></i>
+                    {{ isEditMode ? 'Save Changes' : 'Create Task' }}
                 </button>
                 <button class="btn-cancel" (click)="onCancel()">Cancel</button>
             </div>

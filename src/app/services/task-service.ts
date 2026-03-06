@@ -29,4 +29,18 @@ export class TaskService {
     const updatedTasks = currentTasks.filter(task => task.id !== taskId);
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(updatedTasks));
   }
+
+  getTaskById(id: number): ITask | undefined {
+    const tasks = this.getTasks();
+    return tasks.find(task => task.id === id);
   }
+
+  updateTask(updatedTask: ITask): void {
+    const tasks = this.getTasks();
+    const index = tasks.findIndex(task => task.id === updatedTask.id);
+    if (index !== -1) {
+      tasks[index] = updatedTask;
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(tasks));
+    }
+  }
+}

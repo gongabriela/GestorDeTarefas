@@ -8,4 +8,5 @@ export const routes: Routes = [
     {path: 'dashboard', component: Dashboard},
     {path: 'task-list', component: TaskList},
     {path: 'add-task', component: TaskForm},
+    {path: 'edit-task/:id', component: TaskForm},
 ];
