@@ -24,4 +24,9 @@ export class TaskService {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(tasks));
   };
 
-}
+  deleteTask(taskId: string | number): void {
+    const currentTasks = this.getTasks();
+    const updatedTasks = currentTasks.filter(task => task.id !== taskId);
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(updatedTasks));
+  }
+  }

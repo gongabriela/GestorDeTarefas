@@ -3,7 +3,7 @@
         <h2>To Do</h2>
         @for (task of tasks; track task.id) {
             @if (task.status === 'To Do') {
-                <app-task-card [task]="task" (editTask)="handleEditTask($event)" (deleteTask)="handleDeleteTask($event)"></app-task-card>
+                <app-task-card [task]="task" (deleteTask)="handleDeleteTask($event)"></app-task-card>
             }
         }
     </section>
@@ -11,7 +11,7 @@
         <h2>In Progress</h2>
         @for (task of tasks; track task.id) {   
             @if (task.status === 'Doing') {
-                <app-task-card [task]="task" (editTask)="handleEditTask($event)" (deleteTask)="handleDeleteTask($event)"></app-task-card>
+                <app-task-card [task]="task" (deleteTask)="handleDeleteTask($event)"></app-task-card>
             }  
         }
     </section>
@@ -19,7 +19,7 @@
         <h2>Done</h2>
         @for (task of tasks; track task.id) { 
             @if (task.status === 'Done') {
-                <app-task-card [task]="task" (editTask)="handleEditTask($event)" (deleteTask)="handleDeleteTask($event)"></app-task-card>
+                <app-task-card [task]="task" (deleteTask)="handleDeleteTask($event)"></app-task-card>
             } 
         }
     </section>

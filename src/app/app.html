@@ -6,6 +6,13 @@
 
   <main class="main-container">
     <router-outlet></router-outlet>
+    @if (deleteModalService.isOpen) {
+      <app-delete-modal
+        [taskTitle]="deleteModalService.message"
+        (confirm)="onModalDeleteConfirm()"
+        (cancel)="onModalDeleteCancel()">
+      </app-delete-modal>
+    }
   </main>
 
 </div>

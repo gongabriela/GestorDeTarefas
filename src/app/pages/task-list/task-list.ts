@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TaskCard } from '../../components/task-card/task-card';
 import { ITask } from '../../models/task.model';
 import { TaskService } from '../../services/task-service';
+import { DeleteModalService } from '../../services/delete-modal-service';
 
 @Component({
   selector: 'app-task-list',
@@ -11,20 +12,27 @@ import { TaskService } from '../../services/task-service';
 })
 export class TaskList implements OnInit {
 
-  constructor(private taskService: TaskService) {};
-
-  handleEditTask(selectedTask: ITask) {
-    console.log('Tarefa editada:', selectedTask);
-  }
-
-  handleDeleteTask(selectedTask: ITask) {
-    console.log('Tarefa deletada:', selectedTask);
-  }
-  
   tasks: ITask[] = [];
+
+  constructor(
+    private taskService: TaskService,
+    private deleteModalService: DeleteModalService
+  ) {};
 
   ngOnInit() {
     this.tasks = this.taskService.getTasks();
   }
 
+  handleDeleteTask(selectedTask: ITask) {
+    this.deleteModalService.openConfirm(selectedTask.title)
+    .subscribe((respostaDoUtilizador: boolean) => {
+      if (respostaDoUtilizador === true) {
+        this.taskService.deleteTask(selectedTask.id);
+        this.tasks = this.taskService.getTasks(); 
+        console.log('A tarefa foi destruída com sucesso! 💥');
+      } else {
+        console.log('Operação cancelada. A tarefa está a salvo! 🛡️');
+      }
+    });
+  }
 }

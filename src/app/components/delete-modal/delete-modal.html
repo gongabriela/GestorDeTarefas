@@ -1,0 +1,31 @@
+<div class="modal-overlay-delete">
+
+    <div class="modal-delete-box">
+
+        <button class="close-btn" (click)="onCancel()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="modal-header-icon-container">
+            <div class="modal-header-icon">
+                <i class="fa-solid fa-trash-can"></i>
+            </div>
+        </div>
+
+        <h2 class="modal-title">Delete Task?</h2>
+        
+        <div class="modal-body-text">
+            <p class="warning-main">Are you sure you want to delete
+                '<strong><span class="task-highlight">{{ taskTitle }}</span></strong>'?
+            </p>
+            <p class="warning-sub">This action cannot be undone.</p>
+        </div>
+
+        <div class="modal-actions">
+            <button class="btn-delete" (click)="onConfirm()">Delete Task</button>
+            <button class="btn-cancel" (click)="onCancel()">Cancel</button>
+        </div>
+
+    </div>
+
+</div>
