@@ -45,10 +45,10 @@
                             formControlName="category"
                             [ngClass]="{ 'input-error': taskForm.get('category')?.invalid && taskForm.get('category')?.touched }">
                         <option value="" disabled selected>Choose a category</option>
-                        <option value="design">Work</option>
-                        <option value="development">Personal</option>
-                        <option value="testing">Study</option>
-                        <option value="deployment">Urgent</option>
+                        <option value="Work">Work</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Study">Study</option>
+                        <option value="Urgent">Urgent</option>
                     </select>
                     @if (taskForm.get('category')?.invalid && taskForm.get('category')?.touched) {
                         <p class="form-error-text">

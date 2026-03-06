@@ -70,7 +70,6 @@ export class TaskForm implements OnInit {
     };
     
     this.taskService.updateTask(tarefaAtualizada);
-    console.log('Tarefa atualizada com sucesso no LocalStorage!');
   }
 
   private saveNewTask() {
@@ -87,7 +86,6 @@ export class TaskForm implements OnInit {
     };
     
     this.taskService.addTask(novaTarefa);
-    console.log('Tarefa gravada com sucesso no LocalStorage:', novaTarefa);
   }
 
   private setupEditMode(taskId: number) : void {

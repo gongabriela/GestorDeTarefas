@@ -29,9 +29,7 @@ export class TaskList implements OnInit {
       if (respostaDoUtilizador === true) {
         this.taskService.deleteTask(selectedTask.id);
         this.tasks = this.taskService.getTasks(); 
-        console.log('A tarefa foi destruída com sucesso! 💥');
       } else {
-        console.log('Operação cancelada. A tarefa está a salvo! 🛡️');
       }
     });
   }

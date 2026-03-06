@@ -1,19 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { KpiCard } from '../../components/kpi-card/kpi-card';
-import { KpiData } from '../../models/kpi-data.model';
+import { KpiData, IDashboardKPIs } from '../../models/kpi-data.model';
+import { DashboardTaskItem } from '../../components/dashboard-task-item/dashboard-task-item';
+import { DashboardService } from '../../services/dashboard-service';
+import { ITask } from '../../models/task.model';
+import { CommonModule } from '@angular/common'; // Adicionado para segurança
 
 @Component({
   selector: 'app-dashboard',
-  imports: [KpiCard],
+  standalone: true,
+  imports: [CommonModule, KpiCard, DashboardTaskItem],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
-export class Dashboard {
-// APAGAR O array com os dados que amanhã virão do LocalStorage/Service
-  kpiList: KpiData[] = [
-    { title: 'Total Tasks', value: 18, color: 'var(--cor-banana)' },
-    { title: 'Completed', value: 12, color: 'var(--cor-verde)' },
-    { title: 'In Progress', value: 2, color: 'var(--cor-azul-ceu)' },
-    { title: 'Overdue', value: 4, color: 'var(--cor-rosa)' }
-  ];
+export class Dashboard implements OnInit {
+  totals!: IDashboardKPIs;
+  dueTodayTasks: ITask[] = [];
+  kpiList: KpiData[] = []; // Esta é a lista que o teu HTML já percorre
+
+  constructor(private dashboardService: DashboardService) {}
+
+  ngOnInit(): void {
+    this.refreshData();
+  }
+
+  refreshData() {
+    this.totals = this.dashboardService.getKPIs();
+    this.dueTodayTasks = this.dashboardService.getTasksDueToday();
+    
+    // Transformamos os dados brutos na estrutura que o teu kpi-card entende
+    this.kpiList = [
+      { title: 'Total Tasks', value: this.totals.total, color: '#ffcc00' },
+      { title: 'Completed', value: this.totals.completed, color: '#00ff88' },
+      { title: 'In Progress', value: this.totals.inProgress, color: '#00e5ff' },
+      { title: 'Overdue', value: this.totals.overdue, color: '#ff4d4f' }
+    ];
+  }
 }

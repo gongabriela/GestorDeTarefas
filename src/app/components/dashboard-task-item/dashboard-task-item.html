@@ -1,0 +1,33 @@
+<div class="dash-task-card">
+  
+  <div class="icon-wrapper" [ngClass]="categoryClass">
+    <i class="fa-solid" [ngClass]="categoryIcon"></i>
+  </div>
+
+  <div class="task-content">
+    <h3 class="task-title" [ngClass]="{'is-done-text': task.status === 'Done'}">
+      {{ task.title }}
+    </h3>
+    <div class="task-meta">
+      <span class="category-pill" [ngClass]="categoryClass">
+        {{ task.category | uppercase }}
+      </span>
+      <span class="task-desc">{{ task.description || 'Sem descrição detalhada' }}</span>
+    </div>
+  </div>
+
+  <div class="task-actions">
+    <div class="time-display">
+      <i class="fa-regular fa-clock"></i>
+      <span>{{ task.dueDate | date:'shortTime' }}</span> 
+    </div>
+
+    <button class="action-btn" [routerLink]="['/edit-task', task.id]">
+      <i class="fa-solid fa-pen-to-square"></i>
+    </button>
+    
+    <button class="action-btn check-btn" [ngClass]="{'is-done-btn': task.status === 'Done'}">
+      <i class="fa-solid fa-check"></i>
+    </button>
+  </div>
+</div>

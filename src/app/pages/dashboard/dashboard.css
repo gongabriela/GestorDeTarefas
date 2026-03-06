@@ -1,6 +1,89 @@
 .kpi-card-container {
-    display: flex;
-    justify-content: space-between;
-    box-sizing: border-box;
-    /*padding: 20px;*/
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Cria as 4 colunas */
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.dashboard-container {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Grelha de KPIs */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.kpi-card {
+  background-color: #232135; /* var(--cor-fundo-card) */
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kpi-label {
+  color: #8c8b9f;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.kpi-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+/* Cores dos valores conforme o design */
+.total .kpi-value { color: #ffcc00; }     /* Amarelo */
+.completed .kpi-value { color: #00ff88; } /* Verde */
+.in-progress .kpi-value { color: #00e5ff; } /* Ciano */
+.overdue .kpi-value { color: #ff4d4f; }    /* Vermelho */
+
+/* Secção de Tarefas */
+.due-today-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+}
+
+.section-header i {
+  color: #00e5ff;
+  font-size: 1.2rem;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.badge {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #8c8b9f;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #8c8b9f;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
 }
