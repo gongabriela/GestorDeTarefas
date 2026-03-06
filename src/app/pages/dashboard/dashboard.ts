@@ -24,6 +24,15 @@ export class Dashboard implements OnInit {
     this.refreshData();
   }
 
+  handleCompleteTask(taskId: number) : void {
+    
+    const task: ITask | undefined = this.dashboardService.getTaskById(taskId);
+    if (task) {
+      task.status = 'Done';
+      this.dashboardService.updateTask(task);
+      this.refreshData();
+    }
+  }
   refreshData() {
     this.totals = this.dashboardService.getKPIs();
     this.dueTodayTasks = this.dashboardService.getTasksDueToday();

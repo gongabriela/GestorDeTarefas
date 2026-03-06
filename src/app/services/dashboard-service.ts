@@ -55,4 +55,12 @@ export class DashboardService {
     const taskDate = this.normalizeDate(task.dueDate);
     return taskDate.getTime() === today.getTime();
   }
+
+  getTaskById (id : number) : ITask | undefined {
+    return this.taskService.getTaskById(id);
+  }
+
+  updateTask (task : ITask) {
+    this.taskService.updateTask(task);
+  }
 }

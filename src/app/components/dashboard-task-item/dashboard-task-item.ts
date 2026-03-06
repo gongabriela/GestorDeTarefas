@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ITask } from '../../models/task.model';
@@ -13,7 +13,12 @@ import { ITask } from '../../models/task.model';
 export class DashboardTaskItem {
 
   @Input({ required: true }) task!: ITask;
+  @Output() complete = new EventEmitter<number>();
 
+  onCompleteClick() : void {
+    this.complete.emit(this.task.id);
+  }
+  
   get categoryIcon(): string {
     const cat = this.task.category.toLowerCase();
     switch (cat) {

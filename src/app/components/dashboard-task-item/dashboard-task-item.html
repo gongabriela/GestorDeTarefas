@@ -26,7 +26,9 @@
       <i class="fa-solid fa-pen-to-square"></i>
     </button>
     
-    <button class="action-btn check-btn" [ngClass]="{'is-done-btn': task.status === 'Done'}">
+    <button class="action-btn check-btn"
+            [ngClass]="{'is-done-btn': task.status === 'Done'}"
+            (click)="onCompleteClick()">
       <i class="fa-solid fa-check"></i>
     </button>
   </div>
