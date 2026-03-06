@@ -5,9 +5,11 @@
   </div>
 
   <div class="task-content">
-    <h3 class="task-title" [ngClass]="{'is-done-text': task.status === 'Done'}">
-      {{ task.title }}
-    </h3>
+    <a [routerLink]="['/task-details', task.id]">
+      <h3 class="task-title" [ngClass]="{'is-done-text': task.status === 'Done'}">
+        {{ task.title }}
+      </h3>
+    </a>
     <div class="task-meta">
       <span class="category-pill" [ngClass]="categoryClass">
         {{ task.category | uppercase }}
