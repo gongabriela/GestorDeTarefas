@@ -39,6 +39,12 @@ export class Dashboard implements OnInit {
     ];
   }
 
+  get filteredDueTodayTasks(): ITask[] {
+    const category = this.categoryFilterService.selectedCategory;
+    if (category === 'All') return this.dueTodayTasks;
+    return this.dueTodayTasks.filter(task => task.category === category);
+  }
+
   handleCompleteTask(taskId: number) : void {
     
     const task: ITask | undefined = this.taskService.getTaskById(taskId);

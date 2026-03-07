@@ -10,11 +10,11 @@
     <div class="section-header">
       <i class="fa-regular fa-clock"></i>
       <h2>Due Today</h2>
-      <span class="badge">{{ dueTodayTasks.length }} Tasks</span>
+      <span class="badge">{{ filteredDueTodayTasks.length }} Tasks</span>
     </div>
 
     <div class="tasks-list">
-      @for (task of dueTodayTasks; track task.id) {
+      @for (task of filteredDueTodayTasks; track task.id) {
         <app-dashboard-task-item [task]="task" (complete)="handleCompleteTask($event)"></app-dashboard-task-item>
       } @empty {
         <div class="empty-state">
