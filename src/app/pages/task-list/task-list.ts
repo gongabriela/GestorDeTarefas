@@ -3,7 +3,7 @@ import { TaskCard } from '../../components/task-card/task-card';
 import { ITask } from '../../models/task.model';
 import { TaskService } from '../../services/task-service';
 import { CategoryFilterService } from '../../services/category-filter-service';
-import { TaskListFilterService } from '../../services/task-list-filter-service';
+import { TaskListFilterService, SortOption } from '../../services/task-list-filter-service';
 
 @Component({
   selector: 'app-task-list',
@@ -65,6 +65,6 @@ export class TaskList implements OnInit {
 
   onSortChange(event: Event) : void {
     const select = event.target as HTMLSelectElement;
-    this.taskListFilterService.setFilter(select.value);
+    this.taskListFilterService.setFilter(select.value as SortOption);
   }
 }

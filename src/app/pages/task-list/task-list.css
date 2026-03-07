@@ -5,7 +5,7 @@
 }
 
 .kanban-column {
-    background-color: var(transparent);
+    background-color: transparent;
     border: 1px solid var(--cor-borda);
     border-radius: 12px;
     min-height: 70vh;
