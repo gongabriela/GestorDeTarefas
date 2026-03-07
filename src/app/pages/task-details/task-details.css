@@ -16,18 +16,22 @@
 }
 
 .details-content {
-  display: grid;
-  grid-template-columns: 1fr 300px;
+  display: flex;
+  flex-wrap: wrap;
   gap: 30px;
 }
 
 .main-info {
+  flex: 1 1 500px;
   background-color: var(--cor-fundo-card);
   padding: 40px;
   border-radius: 16px;
   border: 1px solid var(--cor-borda);
 }
 
+.details-sidebar {
+  flex: 0 1 300px;
+}
 .task-title {
   font-size: 2.5rem;
   color: white;
