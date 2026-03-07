@@ -4,8 +4,8 @@ import { KpiData, IDashboardKPIs } from '../../models/kpi-data.model';
 import { DashboardTaskItem } from '../../components/dashboard-task-item/dashboard-task-item';
 import { DashboardService } from '../../services/dashboard-service';
 import { ITask } from '../../models/task.model';
-import { CommonModule } from '@angular/common'; // Adicionado para segurança
-
+import { CommonModule } from '@angular/common';
+import { TaskService } from '../../services/task-service';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -18,7 +18,10 @@ export class Dashboard implements OnInit {
   dueTodayTasks: ITask[] = [];
   kpiList: KpiData[] = []; // Esta é a lista que o teu HTML já percorre
 
-  constructor(private dashboardService: DashboardService) {}
+  constructor(
+    private dashboardService: DashboardService,
+    private taskService: TaskService
+  ) {}
 
   ngOnInit(): void {
     this.refreshData();
@@ -26,10 +29,10 @@ export class Dashboard implements OnInit {
 
   handleCompleteTask(taskId: number) : void {
     
-    const task: ITask | undefined = this.dashboardService.getTaskById(taskId);
+    const task: ITask | undefined = this.taskService.getTaskById(taskId);
     if (task) {
       task.status = 'Done';
-      this.dashboardService.updateTask(task);
+      this.taskService.updateTask(task);
       this.refreshData();
     }
   }
