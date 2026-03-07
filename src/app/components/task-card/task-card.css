@@ -75,3 +75,14 @@ time {
     transform: translateY(-3px);
     transition: 0.3s;
 }
+
+.task-title-link {
+  text-decoration: none; 
+  color: inherit;        
+  display: block;        
+}
+
+.task-title-link:hover .task-title {
+  color: var(--cor-azul-ceu); 
+  cursor: pointer;
+}

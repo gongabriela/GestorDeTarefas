@@ -1,24 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
+export class DeleteModalService {
 
-export class DeleteModalService {  
-  
   isOpen = false;
   message = '';
 
   private confirmSubject = new Subject<boolean>();
-  confirm$: Observable<boolean> = this.confirmSubject.asObservable();
-
-  constructor() {}
 
   openConfirm(message: string): Observable<boolean> {
     this.message = message;
     this.isOpen = true;
-    return this.confirm$;
+    this.confirmSubject = new Subject<boolean>();
+    return this.confirmSubject.pipe(take(1));
   }
 
   closeConfirm(result: boolean) {

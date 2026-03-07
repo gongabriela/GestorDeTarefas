@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { ITask } from '../models/task.model';
+import { DeleteModalService } from './delete-modal-service';
 
-@Injectable({ providedIn: 'root',})
-
+@Injectable({ providedIn: 'root' })
 export class TaskService {
 
   private STORAGE_KEY = 'taskList';
 
-  constructor () {};
+  constructor(private deleteModalService: DeleteModalService) {}
 
   getTasks() : ITask[] {
     if (typeof localStorage !== 'undefined') {
@@ -43,5 +45,15 @@ export class TaskService {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(tasks));
     }
   }
-  
+
+  deleteTaskWithConfirmation(task: ITask): Observable<boolean> {
+    return this.deleteModalService.openConfirm(task.title).pipe(
+      tap(confirmed => {
+        if (confirmed) {
+          this.deleteTask(task.id);
+        }
+      })
+    );
+  }
+
 }

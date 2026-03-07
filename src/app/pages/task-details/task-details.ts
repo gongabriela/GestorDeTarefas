@@ -3,7 +3,6 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule, Location } from '@angular/common';
 import { TaskService } from '../../services/task-service';
 import { ITask } from '../../models/task.model';
-import { DeleteModalService } from '../../services/delete-modal-service';
 
 @Component({
   selector: 'app-task-details',
@@ -18,8 +17,7 @@ export class TaskDetails implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private taskService: TaskService,
-    private location: Location,
-    private deleteModalService: DeleteModalService
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -46,13 +44,12 @@ export class TaskDetails implements OnInit {
 
   deleteTask(): void {
     if (this.task) {
-      this.deleteModalService.openConfirm(this.task.title)
-        .subscribe((respostaDoUtilizador: boolean) => {
-          if (respostaDoUtilizador === true) {
-            this.taskService.deleteTask(this.task!.id);
+      this.taskService.deleteTaskWithConfirmation(this.task)
+        .subscribe(deleted => {
+          if (deleted) {
             this.goBack();
           }
         });
-    } 
+    }
   }
 }

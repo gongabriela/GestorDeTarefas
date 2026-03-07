@@ -11,7 +11,9 @@
     </div>
   </div>
 
-  <h3>{{ task.title }}</h3> 
+  <a [routerLink]="['/task-details', task.id]" class="task-title-link">
+    <h3 class="task-title">{{ task.title }}</h3>
+  </a>
   <p>{{ task.description }}</p>
 
   <div class="card-footer">
