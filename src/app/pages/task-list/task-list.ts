@@ -3,6 +3,7 @@ import { TaskCard } from '../../components/task-card/task-card';
 import { ITask } from '../../models/task.model';
 import { TaskService } from '../../services/task-service';
 import { CategoryFilterService } from '../../services/category-filter-service';
+import { TaskListFilterService } from '../../services/task-list-filter-service';
 
 @Component({
   selector: 'app-task-list',
@@ -16,7 +17,8 @@ export class TaskList implements OnInit {
 
   constructor(
     private taskService: TaskService,
-    private categoryFilterService: CategoryFilterService
+    private categoryFilterService: CategoryFilterService,
+    public taskListFilterService: TaskListFilterService
   ) {}
 
   ngOnInit() {
@@ -29,16 +31,27 @@ export class TaskList implements OnInit {
     return this.tasks.filter(task => task.category === category);
   }
 
+  get sortedTasks(): ITask[] {
+    const filter = this.taskListFilterService.selectedFilterTaskList;
+    if (filter === 'dueDateAsc') {
+      return [...this.filteredTasks].sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
+    }
+    if (filter === 'creationDate') {
+      return [...this.filteredTasks].sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+    }
+    return this.filteredTasks;
+  }
+
   get todoTasks() : ITask[] {
-    return this.filteredTasks.filter(task => task.status === 'To Do');
+    return this.sortedTasks.filter(task => task.status === 'To Do');
   }
 
   get doingTasks() : ITask[] {
-    return this.filteredTasks.filter(task => task.status === 'Doing');
+    return this.sortedTasks.filter(task => task.status === 'Doing');
   }
 
   get doneTasks() : ITask[] {
-    return this.filteredTasks.filter(task => task.status === 'Done');
+    return this.sortedTasks.filter(task => task.status === 'Done');
   }
 
   handleDeleteTask(selectedTask: ITask) {
@@ -48,5 +61,10 @@ export class TaskList implements OnInit {
           this.tasks = this.taskService.getTasks();
         }
       });
+  }
+
+  onFilterTaskList(event: Event) : void {
+    const select = event.target as HTMLSelectElement;
+    this.taskListFilterService.setFilterTaskList(select.value as string);
   }
 }
