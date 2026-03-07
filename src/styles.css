@@ -19,8 +19,17 @@
     --cor-texto-principal: #e0def4;
     
     /* Cores de Status */
+    --cor-status-todo: #ff5555;
+    --cor-status-doing: #ffcc00;
+    --cor-status-done: #00ff88;
     --cor-verde: #50fa7b;
     --cor-vermelho: #ff5555;
+
+    /* Cores de Categoria */
+    --cor-cat-personal: #00e5ff;
+    --cor-cat-study: #b088ff;
+    --cor-cat-work: #ffcc00;
+    --cor-cat-urgent: #ff4d4f;
     
     /* Fontes */
     --fonte-titulo: 'Outfit', sans-serif;

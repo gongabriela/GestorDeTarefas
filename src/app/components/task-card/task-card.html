@@ -1,6 +1,6 @@
 <div class="card-neon">
   <div class="card-header">
-    <span class="badge">{{ task.category }}</span>
+    <span class="badge" [ngClass]="'cat-' + task.category.toLowerCase()">{{ task.category }}</span>
     <div class="card-header-buttons">
       <button class="edit-btn" [routerLink]="['/edit-task', task.id]">
         <i class="fas fa-edit"></i>
@@ -18,6 +18,6 @@
 
   <div class="card-footer">
     <time>📅 {{ task.dueDate | date:'dd/MM/yyyy' }}</time>
-    <span class="status-tag">{{ task.status }}</span>
+    <span class="status-tag" [ngClass]="'status-' + task.status.toLowerCase().replace(' ', '-')">{{ task.status }}</span>
   </div>
 </div>

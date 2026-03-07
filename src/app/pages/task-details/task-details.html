@@ -17,7 +17,7 @@
 
     <main class="details-content">
       <section class="main-info">
-        <div class="status-badge" [ngClass]="task.status.toLowerCase()">
+        <div class="status-badge" [ngClass]="'status-' + task.status.toLowerCase().replace(' ', '-')">
           {{ task.status }}
         </div>
         <h1 class="task-title">{{ task.title }}</h1>

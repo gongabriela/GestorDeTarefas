@@ -22,14 +22,18 @@
 }
 
 .badge {
-    background: rgba(139, 233, 253, 0.1); /* Azul céu com transparência */
-    color: var(--cor-azul-ceu);
     padding: 4px 8px;
     border-radius: 6px;
     font-size: 0.75rem;
     font-weight: bold;
     text-transform: uppercase;
 }
+
+/* Cores por categoria */
+.cat-personal { color: var(--cor-cat-personal); background: rgba(0, 229, 255, 0.1); }
+.cat-study { color: var(--cor-cat-study); background: rgba(176, 136, 255, 0.1); }
+.cat-work { color: var(--cor-cat-work); background: rgba(255, 204, 0, 0.1); }
+.cat-urgent { color: var(--cor-cat-urgent); background: rgba(255, 77, 79, 0.1); }
 
 p {
     font-size: 0.95rem;
@@ -53,8 +57,12 @@ time {
 
 .status-tag {
     font-weight: 600;
-    color: var(--cor-rosa);
 }
+
+/* Cores por status */
+.status-to-do { color: var(--cor-status-todo); }
+.status-doing { color: var(--cor-status-doing); }
+.status-done { color: var(--cor-status-done); }
 
 .card-header-buttons {
     display: flex;
