@@ -1,7 +1,7 @@
 <div class="dash-task-card">
   
-  <div class="icon-wrapper" [ngClass]="categoryClass">
-    <i class="fa-solid" [ngClass]="categoryIcon"></i>
+  <div class="icon-wrapper" [ngClass]="'cat-' + task.category.toLowerCase()">
+    <i class="fa-solid" [ngClass]="task.category | categoryIcon"></i>
   </div>
 
   <div class="task-content">
@@ -11,7 +11,7 @@
       </h3>
     </a>
     <div class="task-meta">
-      <span class="category-pill" [ngClass]="categoryClass">
+      <span class="category-pill" [ngClass]="'cat-' + task.category.toLowerCase()">
         {{ task.category | uppercase }}
       </span>
       <span class="task-desc">{{ task.description || 'Sem descrição detalhada' }}</span>

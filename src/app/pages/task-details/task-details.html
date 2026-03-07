@@ -32,7 +32,7 @@
         <div class="meta-item">
           <label>Category</label>
           <div class="value" [ngClass]="'cat-' + task.category.toLowerCase()">
-            <i class="fa-solid" [ngClass]="categoryIcon"></i>
+            <i class="fa-solid" [ngClass]="task.category | categoryIcon"></i>
             {{ task.category }}
           </div>
         </div>
