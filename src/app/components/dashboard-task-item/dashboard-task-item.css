@@ -99,11 +99,11 @@
   color: #00ff88; /* Um verde brilhante ao passar o rato */
 }
 
-/* Cores Dinâmicas das Categorias (Ajusta às tuas cores exatas) */
-.cat-development { color: #00e5ff; } /* Ciano */
-.cat-design { color: #ff007f; }    /* Rosa */
-.cat-shopping { color: #ffcc00; }  /* Amarelo */
-.cat-work { color: #b088ff; }      /* Roxo */
+/* Cores Dinâmicas das Categorias */
+.cat-personal { color: #00e5ff; }
+.cat-study { color: #b088ff; }
+.cat-work { color: #ffcc00; }
+.cat-urgent { color: #ff4d4f; }
 
 /* Estado "Concluído" */
 .is-done-text {
