@@ -1,26 +1,20 @@
 <div class="kanban-board">
     <section class="kanban-column">
         <h2>To Do</h2>
-        @for (task of tasks; track task.id) {
-            @if (task.status === 'To Do') {
-                <app-task-card [task]="task" (deleteTask)="handleDeleteTask($event)"></app-task-card>
-            }
+        @for (task of todoTasks; track task.id) {
+            <app-task-card [task]="task" (deleteTask)="handleDeleteTask($event)"></app-task-card>
         }
     </section>
     <section class="kanban-column">
         <h2>In Progress</h2>
-        @for (task of tasks; track task.id) {   
-            @if (task.status === 'Doing') {
-                <app-task-card [task]="task" (deleteTask)="handleDeleteTask($event)"></app-task-card>
-            }  
-        }
+        @for (task of doingTasks; track task.id) {   
+             <app-task-card [task]="task" (deleteTask)="handleDeleteTask($event)"></app-task-card>
+        }  
     </section>
     <section class="kanban-column">
         <h2>Done</h2>
-        @for (task of tasks; track task.id) { 
-            @if (task.status === 'Done') {
-                <app-task-card [task]="task" (deleteTask)="handleDeleteTask($event)"></app-task-card>
-            } 
+        @for (task of doneTasks; track task.id) { 
+            <app-task-card [task]="task" (deleteTask)="handleDeleteTask($event)"></app-task-card>
         }
     </section>
 </div>

@@ -19,6 +19,18 @@ export class TaskList implements OnInit {
     this.tasks = this.taskService.getTasks();
   }
 
+  get todoTasks() : ITask[] {
+    return this.tasks.filter(task => task.status === 'To Do');
+  }
+
+  get doingTasks() : ITask[] {
+    return this.tasks.filter(task => task.status === 'Doing');
+  }
+
+  get doneTasks() : ITask[] {
+    return this.tasks.filter(task => task.status === 'Done');
+  }
+  
   handleDeleteTask(selectedTask: ITask) {
     this.taskService.deleteTaskWithConfirmation(selectedTask)
       .subscribe(deleted => {
