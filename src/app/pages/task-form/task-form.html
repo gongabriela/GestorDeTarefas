@@ -96,7 +96,7 @@
                     <i class="fa-solid" [ngClass]="isEditMode ? 'fa-floppy-disk' : 'fa-circle-plus'"></i>
                     {{ isEditMode ? 'Save Changes' : 'Create Task' }}
                 </button>
-                <button class="btn-cancel" (click)="onCancel()">Cancel</button>
+                <button type="button" class="btn-cancel" (click)="onCancel()">Cancel</button>
             </div>
         </form>
     </div>
