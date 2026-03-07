@@ -41,7 +41,7 @@
 }
 
 .barra-de-pesquisa:hover, .filtro-categoria:hover {
-    border-color: var(--cor-rosa);    border-color: var(--cor-rosa);
+    border-color: var(--cor-rosa);
     transition: 0.3s;
     cursor: pointer;
     box-shadow: 0 0 5px var(--cor-rosa);
@@ -64,7 +64,7 @@
 }
 
 .add-task-btn span {
-    color: var(--background-color);
+    color: var(--cor-fundo-pagina);
 }
 .add-task-btn:hover {
     background-color: var(--cor-rosa);

@@ -12,40 +12,6 @@
   gap: 40px;
 }
 
-/* Grelha de KPIs */
-.kpi-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
-
-.kpi-card {
-  background-color: #232135; /* var(--cor-fundo-card) */
-  padding: 24px;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.kpi-label {
-  color: #8c8b9f;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.kpi-value {
-  font-size: 2.5rem;
-  font-weight: 700;
-}
-
-/* Cores dos valores conforme o design */
-.total .kpi-value { color: #ffcc00; }     /* Amarelo */
-.completed .kpi-value { color: #00ff88; } /* Verde */
-.in-progress .kpi-value { color: #00e5ff; } /* Ciano */
-.overdue .kpi-value { color: #ff4d4f; }    /* Vermelho */
-
 /* Secção de Tarefas */
 .due-today-section {
   display: flex;
