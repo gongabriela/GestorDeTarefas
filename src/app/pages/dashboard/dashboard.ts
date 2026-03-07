@@ -6,6 +6,8 @@ import { DashboardService } from '../../services/dashboard-service';
 import { ITask } from '../../models/task.model';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../../services/task-service';
+import { CategoryFilterService } from '../../services/category-filter-service';
+
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -14,17 +16,27 @@ import { TaskService } from '../../services/task-service';
   styleUrl: './dashboard.css',
 })
 export class Dashboard implements OnInit {
-  totals!: IDashboardKPIs;
   dueTodayTasks: ITask[] = [];
-  kpiList: KpiData[] = [];
 
   constructor(
     private dashboardService: DashboardService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private categoryFilterService: CategoryFilterService
   ) {}
 
   ngOnInit(): void {
-    this.refreshData();
+    this.dueTodayTasks = this.dashboardService.getTasksDueToday();
+  }
+
+  get filteredKpiList(): KpiData[] {
+    const category = this.categoryFilterService.selectedCategory;
+    const kpis: IDashboardKPIs = this.dashboardService.getKPIs(category);
+    return [
+      { title: 'Total Tasks', value: kpis.total, color: '#ffcc00' },
+      { title: 'Completed', value: kpis.completed, color: '#00ff88' },
+      { title: 'In Progress', value: kpis.inProgress, color: '#00e5ff' },
+      { title: 'Overdue', value: kpis.overdue, color: '#ff4d4f' }
+    ];
   }
 
   handleCompleteTask(taskId: number) : void {
@@ -33,18 +45,7 @@ export class Dashboard implements OnInit {
     if (task) {
       task.status = 'Done';
       this.taskService.updateTask(task);
-      this.refreshData();
+      this.dueTodayTasks = this.dashboardService.getTasksDueToday();
     }
-  }
-  refreshData() {
-    this.totals = this.dashboardService.getKPIs();
-    this.dueTodayTasks = this.dashboardService.getTasksDueToday();
-    
-    this.kpiList = [
-      { title: 'Total Tasks', value: this.totals.total, color: '#ffcc00' },
-      { title: 'Completed', value: this.totals.completed, color: '#00ff88' },
-      { title: 'In Progress', value: this.totals.inProgress, color: '#00e5ff' },
-      { title: 'Overdue', value: this.totals.overdue, color: '#ff4d4f' }
-    ];
   }
 }

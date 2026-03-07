@@ -1,7 +1,7 @@
 <div class="dashboard-container">
   
   <div class="kpi-card-container">
-      @for (kpi of kpiList; track kpi.title) {
+      @for (kpi of filteredKpiList; track kpi.title) {
         <app-kpi-card [kpi]="kpi"></app-kpi-card>
       }
 </div>

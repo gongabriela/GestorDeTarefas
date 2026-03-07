@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TaskService } from './task-service';
-import { ITask } from '../models/task.model';
+import { ITask, CategoryFilter } from '../models/task.model';
 import { IDashboardKPIs } from '../models/kpi-data.model';
 
 @Injectable({
@@ -10,9 +10,13 @@ export class DashboardService {
 
   constructor(private taskService: TaskService) { }
 
-  getKPIs(): IDashboardKPIs {
-    const tasks = this.taskService.getTasks();
+  getKPIs(category: CategoryFilter = 'All'): IDashboardKPIs {
+    let tasks = this.taskService.getTasks();
     const today = this.getTodayAtMidnight();
+
+    if (category !== 'All') {
+      tasks = tasks.filter(task => task.category === category);
+    }
 
     let kpis: IDashboardKPIs = { total: tasks.length, completed: 0, inProgress: 0, overdue: 0 };
 
