@@ -9,8 +9,14 @@
         </div>
 
         <div class="filtro-categoria">
-            <select id="categoria" name="categoria">
-                <option value="all">All Categories</option>
+            <select id="categoria" name="categoria"
+            [value]="categoryFilterService.selectedCategory"
+            (change)="onCategoryChange($event)">
+                <option value="All">All Categories</option>
+                <option value="Work">Work</option>
+                <option value="Personal">Personal</option>
+                <option value="Study">Study</option>
+                <option value="Urgent">Urgent</option>
             </select>
         </div>
 

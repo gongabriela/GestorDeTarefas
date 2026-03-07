@@ -16,7 +16,7 @@ import { TaskService } from '../../services/task-service';
 export class Dashboard implements OnInit {
   totals!: IDashboardKPIs;
   dueTodayTasks: ITask[] = [];
-  kpiList: KpiData[] = []; // Esta é a lista que o teu HTML já percorre
+  kpiList: KpiData[] = [];
 
   constructor(
     private dashboardService: DashboardService,
@@ -40,7 +40,6 @@ export class Dashboard implements OnInit {
     this.totals = this.dashboardService.getKPIs();
     this.dueTodayTasks = this.dashboardService.getTasksDueToday();
     
-    // Transformamos os dados brutos na estrutura que o teu kpi-card entende
     this.kpiList = [
       { title: 'Total Tasks', value: this.totals.total, color: '#ffcc00' },
       { title: 'Completed', value: this.totals.completed, color: '#00ff88' },
