@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { TaskService } from '../../services/task-service'; 
 import { ITask } from '../../models/task.model';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-task-form',
@@ -27,9 +26,9 @@ export class TaskForm implements OnInit {
   taskToEdit: ITask | null = null;
   
   constructor(
-    private location: Location,
     private taskService: TaskService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() : void {
@@ -41,7 +40,7 @@ export class TaskForm implements OnInit {
   }
 
   onCancel() : void {
-    this.location.back();
+    this.router.navigate(['/task-list']);
   }
 
   onSubmit() {
@@ -54,7 +53,7 @@ export class TaskForm implements OnInit {
     } else {
       this.saveNewTask();
     }
-    this.location.back();
+    this.router.navigate(['/task-list']);
   }
 
   private saveEditedTask() {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CommonModule, Location } from '@angular/common';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { TaskService } from '../../services/task-service';
 import { ITask } from '../../models/task.model';
 
@@ -17,7 +17,7 @@ export class TaskDetails implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private taskService: TaskService,
-    private location: Location
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -39,7 +39,7 @@ export class TaskDetails implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    this.router.navigate(['/task-list']);
   }
 
   deleteTask(): void {
