@@ -29,7 +29,8 @@ export class TaskService {
   deleteTask(taskId: string | number): void {
     const currentTasks = this.getTasks();
     const updatedTasks = currentTasks.filter(task => task.id !== taskId);
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(updatedTasks));
+    if (typeof localStorage !== 'undefined')
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(updatedTasks));
   }
 
   getTaskById(id: number): ITask | undefined {
@@ -42,7 +43,8 @@ export class TaskService {
     const index = tasks.findIndex(task => task.id === updatedTask.id);
     if (index !== -1) {
       tasks[index] = updatedTask;
-      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(tasks));
+      if (typeof localStorage !== 'undefined')
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(tasks));
     }
   }
 
