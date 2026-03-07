@@ -32,7 +32,7 @@ export class TaskList implements OnInit {
   }
 
   get sortedTasks(): ITask[] {
-    const filter = this.taskListFilterService.selectedFilterTaskList;
+    const filter = this.taskListFilterService.selectedFilter;
     if (filter === 'dueDateAsc') {
       return [...this.filteredTasks].sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
     }
@@ -63,8 +63,8 @@ export class TaskList implements OnInit {
       });
   }
 
-  onFilterTaskList(event: Event) : void {
+  onSortChange(event: Event) : void {
     const select = event.target as HTMLSelectElement;
-    this.taskListFilterService.setFilterTaskList(select.value as string);
+    this.taskListFilterService.setFilter(select.value);
   }
 }

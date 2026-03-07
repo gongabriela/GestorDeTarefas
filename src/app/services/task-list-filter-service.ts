@@ -4,9 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class TaskListFilterService {
-  selectedFilterTaskList: string = 'All';
+  selectedFilter: string = 'creationDate';
 
-  setFilterTaskList(selectedFilter: string): void{
-    this.selectedFilterTaskList = selectedFilter;
+  setFilter(filter: string): void {
+    this.selectedFilter = filter;
   }
 }

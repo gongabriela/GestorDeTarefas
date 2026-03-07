@@ -1,8 +1,8 @@
 <div class="filter-bar-container">
     <div class="filter-bar">
         <select id="filterDueDate"
-            [value]="taskListFilterService.selectedFilterTaskList"
-            (change)="onFilterTaskList($event)">
+            [value]="taskListFilterService.selectedFilter"
+            (change)="onSortChange($event)">
                 <option value="creationDate">Creation Date</option>
                 <option value="dueDateAsc">Due date ascending</option>
         </select>
