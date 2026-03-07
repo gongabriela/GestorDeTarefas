@@ -7,7 +7,7 @@ import { DeleteModalService } from './delete-modal-service';
 @Injectable({ providedIn: 'root' })
 export class TaskService {
 
-  private STORAGE_KEY = 'taskList';
+  private readonly STORAGE_KEY = 'taskList';
 
   constructor(private deleteModalService: DeleteModalService) {}
 
@@ -17,16 +17,16 @@ export class TaskService {
     return data ? JSON.parse(data) : [];
     }
     return [];
-  };
+  }
 
   addTask(task: ITask): void {
     const tasks = this.getTasks();
     tasks.push(task);
     if (typeof localStorage !== 'undefined')
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(tasks));
-  };
+  }
 
-  deleteTask(taskId: string | number): void {
+  deleteTask(taskId: number): void {
     const currentTasks = this.getTasks();
     const updatedTasks = currentTasks.filter(task => task.id !== taskId);
     if (typeof localStorage !== 'undefined')
