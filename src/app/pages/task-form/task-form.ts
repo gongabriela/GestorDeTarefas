@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { noWhitespaceValidator } from '../../validators/no-whitespace-validator';
 import { TaskService } from '../../services/task-service'; 
 import { ITask } from '../../models/task.model';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -106,15 +106,4 @@ export class TaskForm implements OnInit {
     });
   }
 
-}
-
-export function noWhitespaceValidator(control: AbstractControl): ValidationErrors | null {
-  if (!control.value || typeof control.value !== 'string') {
-    return null;
-  }
-  const isWhitespace = control.value.trim().length === 0;
-  if (isWhitespace) {
-    return { whitespace: true };
-  }
-  return null;
 }
