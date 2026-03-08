@@ -54,21 +54,56 @@
 .add-task-btn {
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: var(--cor-azul-ceu);
+    color: var(--cor-fundo-pagina);
     border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-weight: bold;
+    border-radius: 20px;
+    padding: 12px 25px;
+    font-weight: 600;
+    font-family: var(--fonte-titulo);
+    text-decoration: none;
     cursor: pointer;
-    gap: 5px;
+    gap: 8px;
+    box-sizing: border-box;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
+.add-task-btn i,
 .add-task-btn span {
     color: var(--cor-fundo-pagina);
 }
+
 .add-task-btn:hover {
     background-color: var(--cor-rosa);
-    transition: 0.3s;
-    box-shadow: 0 0 5px var(--cor-rosa);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 149, 214, 0.4); 
 }
 
+@media (max-width: 1024px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .navbar-menu {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .barra-de-pesquisa,
+    .filtro-categoria,
+    .add-task-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .barra-de-pesquisa input,
+    .filtro-categoria select {
+        width: 100%;
+    }
+
+}

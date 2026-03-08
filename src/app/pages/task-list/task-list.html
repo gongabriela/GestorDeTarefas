@@ -12,19 +12,19 @@
 
     <div class="kanban-board">
         <section class="kanban-column">
-            <h2>To Do</h2>
+            <h2 class="todo-title">To Do</h2>
             @for (task of todoTasks; track task.id) {
                 <app-task-card [task]="task" (deleteTask)="handleDeleteTask($event)"></app-task-card>
             }
         </section>
         <section class="kanban-column">
-            <h2>In Progress</h2>
+            <h2 class="in-progress-title">In Progress</h2>
             @for (task of doingTasks; track task.id) {   
                 <app-task-card [task]="task" (deleteTask)="handleDeleteTask($event)"></app-task-card>
             }  
         </section>
         <section class="kanban-column">
-            <h2>Done</h2>
+            <h2 class="done-title">Done</h2>
             @for (task of doneTasks; track task.id) { 
                 <app-task-card [task]="task" (deleteTask)="handleDeleteTask($event)"></app-task-card>
             }

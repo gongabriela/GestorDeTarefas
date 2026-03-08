@@ -40,6 +40,8 @@
   color: #fff; /* Título em branco/amarelo dependendo do teu tema */
   font-size: 1.1rem;
   font-weight: 600;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .task-meta {
@@ -112,4 +114,38 @@
 }
 .is-done-btn {
   color: #00ff88;
+}
+
+@media (max-width: 1024px) {
+
+  .dash-task-card {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  }
+
+  .task-content {
+  width: 100%;
+  min-width: 0;
+  }
+
+  .task-meta {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  }
+
+  .task-title, .task-desc {
+  white-space: normal;
+  word-break: break-all;
+  max-width: 100%;
+  }
+
+  .task-actions {
+  width: 100%;
+  justify-content: space-between;
+  }
+
 }

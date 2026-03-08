@@ -58,3 +58,28 @@
     border-color: var(--cor-rosa);
     box-shadow: 0 0 5px var(--cor-rosa);
 }
+
+.kanban-column .todo-title {
+    color: var(--cor-status-todo);
+}
+
+.kanban-column .in-progress-title {
+    color: var(--cor-status-doing);
+}
+
+.kanban-column .done-title {
+    color: var(--cor-status-done);
+}
+
+@media (max-width: 1024px) {
+
+    .kanban-board {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .filter-bar-container {
+        justify-content: center;
+    }
+
+}

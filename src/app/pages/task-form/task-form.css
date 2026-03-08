@@ -118,6 +118,7 @@
     padding: 12px;
     font-family: inherit;
     font-size: 1rem;
+    box-sizing: border-box;
 }
 
 .form-group input::placeholder, 
@@ -193,4 +194,33 @@
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+@media (max-width: 1024px) {
+
+    .add-task-modal {
+        padding: 20px 15px;
+    }
+
+    .form-dropdown-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .half-width {
+        flex: none;
+        width: 100%;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-create,
+    .btn-cancel {
+        width: 100%;
+        justify-content: center;
+    }
+
 }

@@ -51,3 +51,9 @@ h1 {
     color: var(--cor-banana);
 }
 
+option {
+    background-color: var(--cor-fundo-card);
+    color: var(--cor-texto-principal);
+    font-family: var(--fonte-texto);
+    padding: 10px;
+}

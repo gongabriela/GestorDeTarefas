@@ -94,3 +94,8 @@ time {
   color: var(--cor-azul-ceu); 
   cursor: pointer;
 }
+
+.task-title, p {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
