@@ -20,7 +20,7 @@ O **TaskWave** é uma aplicação web de gestão de tarefas (To-Do List & Kanban
 ## Live Demo (Acesso Online)
 
 A aplicação está publicada e a correr na íntegra no GitHub Pages. Pode aceder e testar todas as funcionalidades diretamente aqui:
-**[Clique aqui para abrir o TaskWave](<COLOQUE-AQUI-O-SEU-LINK-DO-GITHUB-PAGES>)**
+**[Clique aqui para abrir o TaskWave](https://gongabriela.github.io/GestorDeTarefas/#/dashboard)**
 
 ---
 
