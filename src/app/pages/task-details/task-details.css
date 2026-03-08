@@ -44,7 +44,6 @@
   gap: 20px;
 }
 
-/* Cores das Categorias */
 .cat-personal { color: var(--cor-cat-personal); }
 .cat-study { color: var(--cor-cat-study); }
 .cat-work { color: var(--cor-cat-work); }
@@ -58,12 +57,10 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* Cores por status */
 .status-to-do { color: var(--cor-status-todo); }
 .status-doing { color: var(--cor-status-doing); }
 .status-done { color: var(--cor-status-done); }
 
-/* Botão Voltar */
 .btn-back {
   background-color: #232135;
   color: #fff;
@@ -79,7 +76,6 @@
   background-color: var(--cor-borda);
 }
 
-/* Grupo de Ações (Edit/Delete) */
 .header-actions {
   display: flex;
   gap: 10px;
@@ -100,7 +96,6 @@
 .btn-edit:hover { border-color: var(--cor-azul-ceu); color: var(--cor-azul-ceu); }
 .btn-delete:hover { border-color: var(--cor-vermelho); color: var(--cor-vermelho); }
 
-/* Cartões de Metadados (Lado Direito) */
 .meta-item {
   background-color: #232135;
   border: 1px solid var(--cor-borda);

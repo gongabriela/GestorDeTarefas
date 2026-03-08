@@ -1,4 +1,3 @@
-/* A Capa Escura */
 .modal-overlay {
     position: fixed; 
     top: 0;
@@ -12,17 +11,14 @@
     align-items: center;
     z-index: 9999; 
     
-    /* NOVO: Garante que há sempre espaço à volta da janela, mesmo em ecrãs minúsculos */
     padding: 20px; 
     box-sizing: border-box;
 }
 
-/* A Janela Principal */
 .add-task-modal {
     background-color: var(--cor-fundo-card); 
     border-radius: 12px;
     
-    /* NOVO: Ajustei o padding e a largura para se parecer mais com o teu design original */
     padding: 25px 30px; 
     width: 100%;
     max-width: 550px; 
@@ -30,13 +26,11 @@
     border: 1px solid var(--cor-borda); 
     font-family: var(--fonte-texto); 
     
-    /* AS REGRAS DE OURO PARA O TAMANHO NO ECRÃ 1024px */
-    max-height: 85vh; /* A janela vai ocupar no máximo 85% da altura do ecrã (deixa a tal margem em cima e em baixo) */
-    overflow-y: auto; /* Se o ecrã for muito pequeno, cria uma barra de scroll interna na janela */
+    max-height: 85vh; 
+    overflow-y: auto;
     box-sizing: border-box;
 }
 
-/* BÓNUS: Deixar a barra de scroll interna bonita e invisível se não for precisa */
 .add-task-modal::-webkit-scrollbar {
     width: 6px;
 }
@@ -48,7 +42,6 @@
     border-radius: 10px;
 }
 
-/* Modal Header Styles */
 .modal-header {
     margin-bottom: 25px;
 }
@@ -85,12 +78,11 @@
 }
 
 .header-text p {
-    color: #a09eb5; /* Cor cinza secundária baseada no layout */
+    color: #a09eb5;
     margin: 0;
     font-size: 0.9rem;
 }
 
-/* Form Styles */
 .form-container {
     display: flex;
     flex-direction: column;
@@ -123,10 +115,9 @@
 
 .form-group input::placeholder, 
 .form-group textarea::placeholder {
-    color: #666; /* Placeholder secundário */
+    color: #666;
 }
 
-/* Dropdowns Container */
 .form-dropdown-container {
     display: flex;
     gap: 20px;
@@ -139,7 +130,7 @@
 
 .date-input-container input[type="date"] {
     width: 100%;
-    color: #666; /* Ajustando a cor para quando não há data selecionada */
+    color: #666;
 }
 
 .form-error-message {
@@ -151,12 +142,11 @@
     gap: 5px;
 }
 
-/* Action Buttons */
 .modal-actions {
     display: flex;
     gap: 15px;
     margin-top: 20px;
-    justify-content: flex-end; /* Alinhando os botões à direita */
+    justify-content: flex-end;
 }
 
 .btn-create, .btn-cancel {

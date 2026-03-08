@@ -7,7 +7,6 @@
     cursor: pointer;
 }
 
-/* Efeito de hover para parecer uma interface interativa */
 .card-neon:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
@@ -29,7 +28,6 @@
     text-transform: uppercase;
 }
 
-/* Cores por categoria */
 .cat-personal { color: var(--cor-cat-personal); background: rgba(0, 229, 255, 0.1); }
 .cat-study { color: var(--cor-cat-study); background: rgba(176, 136, 255, 0.1); }
 .cat-work { color: var(--cor-cat-work); background: rgba(255, 204, 0, 0.1); }
@@ -59,7 +57,6 @@ time {
     font-weight: 600;
 }
 
-/* Cores por status */
 .status-to-do { color: var(--cor-status-todo); }
 .status-doing { color: var(--cor-status-doing); }
 .status-done { color: var(--cor-status-done); }

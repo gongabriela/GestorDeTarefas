@@ -1,7 +1,7 @@
 .dash-task-card {
   display: flex;
   align-items: center;
-  background-color: var(--cor-fundo-card); /* Usa a tua variável CSS aqui, ex: var(--cor-fundo-card) */
+  background-color: var(--cor-fundo-card);
   border-radius: 12px;
   padding: 16px 24px;
   margin-bottom: 12px;
@@ -15,7 +15,6 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* O Ícone Circular da Esquerda */
 .icon-wrapper {
   width: 45px;
   height: 45px;
@@ -24,12 +23,11 @@
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
-  border: 1px solid currentColor; /* A cor da borda será a cor do texto/ícone */
+  border: 1px solid currentColor; 
 }
 
-/* O Centro (Textos) */
 .task-content {
-  flex: 1; /* Ocupa todo o espaço disponível no meio */
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -37,7 +35,7 @@
 
 .task-title {
   margin: 0;
-  color: #fff; /* Título em branco/amarelo dependendo do teu tema */
+  color: #fff;
   font-size: 1.1rem;
   font-weight: 600;
   overflow-wrap: break-word;
@@ -56,19 +54,18 @@
   padding: 4px 8px;
   border-radius: 4px;
   letter-spacing: 0.5px;
-  background-color: rgba(255, 255, 255, 0.1); /* Fundo muito subtil */
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .task-desc {
-  color: #8c8b9f; /* Cinza do layout */
+  color: #8c8b9f;
   font-size: 0.85rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 300px; /* Evita que a descrição empurre tudo */
+  max-width: 300px;
 }
 
-/* O Lado Direito (Ações) */
 .task-actions {
   display: flex;
   align-items: center;
@@ -87,7 +84,7 @@
 .action-btn {
   background: none;
   border: none;
-  color: #5d5c72; /* Cinza escuro para os ícones inativos */
+  color: #5d5c72;
   font-size: 1.1rem;
   cursor: pointer;
   transition: color 0.2s;
@@ -98,7 +95,7 @@
 }
 
 .check-btn:hover {
-  color: #00ff88; /* Um verde brilhante ao passar o rato */
+  color: #00ff88;
 }
 
 /* Cores Dinâmicas das Categorias */
@@ -107,7 +104,6 @@
 .cat-work { color: #ffcc00; }
 .cat-urgent { color: #ff4d4f; }
 
-/* Estado "Concluído" */
 .is-done-text {
   text-decoration: line-through;
   color: #5d5c72;

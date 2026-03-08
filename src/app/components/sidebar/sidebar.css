@@ -56,12 +56,12 @@
   
   .sidebar {
     height: auto;
-    width: 100%;           /* Ocupa a largura toda do ecrã */
-    position: fixed;       /* "Descola" a barra da página... */
-    bottom: 0;             /* ... e cola-a exatamente no fundo */
+    width: 100%;           
+    position: fixed;       
+    bottom: 0;             
     left: 0;
-    z-index: 1000;         /* Garante que fica sempre por cima de tudo */
-    padding: 10px 0;       /* Ajusta o espaçamento */
+    z-index: 1000;         
+    padding: 10px 0;       
   }
 
   .navigation-links { 
@@ -77,10 +77,9 @@
   .sidebar-link { 
     flex-direction: column; 
     font-size: 0.9rem; 
-    border: none;          /* Remove as bordas quadradas para ficar mais limpo */
+    border: none;          
   }
 
-  /* Ajuste simples para o botão ativo não ficar um quadrado gigante */
   .sidebar-link.active {
     border-left: none;
     border-bottom: 3px solid var(--cor-azul-ceu);
