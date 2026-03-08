@@ -10,7 +10,7 @@
     padding: 10px;
     box-sizing: border-box;
 
-    background-color: rgba(27, 24, 44, 0.9); 
+    background-color: rgba(var(--cor-fundo-pagina-rgb), 0.9);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--cor-borda);
 }
@@ -77,7 +77,7 @@
 .add-task-btn:hover {
     background-color: var(--cor-rosa);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 149, 214, 0.4); 
+    box-shadow: 0 5px 15px rgba(var(--cor-rosa-rgb), 0.4);
 }
 
 @media (max-width: 1024px) {

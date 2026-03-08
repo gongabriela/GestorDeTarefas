@@ -4,7 +4,7 @@
     left: 0;
     width: 100vw; 
     height: 100vh; 
-    background-color: rgba(0, 0, 0, 0.75); 
+    background-color: rgba(var(--cor-preto-rgb), 0.75); 
     
     display: flex;
     justify-content: center;
@@ -78,7 +78,7 @@
 }
 
 .header-text p {
-    color: #a09eb5;
+    color: var(--cor-texto-sutil);
     margin: 0;
     font-size: 0.9rem;
 }
@@ -103,10 +103,10 @@
 .form-group input, 
 .form-group textarea, 
 .form-group select {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(var(--cor-texto-principal-rgb), 0.05);
     border: 1px solid var(--cor-borda);
     border-radius: 8px;
-    color: white;
+    color: var(--cor-texto-principal);
     padding: 12px;
     font-family: inherit;
     font-size: 1rem;
@@ -115,7 +115,7 @@
 
 .form-group input::placeholder, 
 .form-group textarea::placeholder {
-    color: #666;
+    color: var(--cor-placeholder);
 }
 
 .form-dropdown-container {
@@ -130,7 +130,7 @@
 
 .date-input-container input[type="date"] {
     width: 100%;
-    color: #666;
+    color: var(--cor-placeholder);
 }
 
 .form-error-message {
@@ -167,18 +167,18 @@
 }
 
 .btn-cancel {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(var(--cor-texto-principal-rgb), 0.05);
     color: var(--cor-texto-principal);
     border: none;
 }
 
 .input-error {
-  border: 1px solid #ff4d4f;
-  box-shadow: 0 0 5px rgba(255, 77, 79, 0.3);
+  border: 1px solid var(--cor-cat-urgent);
+  box-shadow: 0 0 5px rgba(var(--cor-cat-urgent-rgb), 0.3);
 }
 
 .form-error-text {
-  color: #ff4d4f;
+  color: var(--cor-cat-urgent);
   font-size: 0.85rem;
   margin-top: 5px;
   display: flex;

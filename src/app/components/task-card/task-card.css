@@ -9,7 +9,7 @@
 
 .card-neon:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 20px rgba(var(--cor-preto-rgb), 0.3);
     border-color: var(--cor-roxo-claro);
 }
 
@@ -28,14 +28,14 @@
     text-transform: uppercase;
 }
 
-.cat-personal { color: var(--cor-cat-personal); background: rgba(0, 229, 255, 0.1); }
-.cat-study { color: var(--cor-cat-study); background: rgba(176, 136, 255, 0.1); }
-.cat-work { color: var(--cor-cat-work); background: rgba(255, 204, 0, 0.1); }
-.cat-urgent { color: var(--cor-cat-urgent); background: rgba(255, 77, 79, 0.1); }
+.cat-personal { color: var(--cor-cat-personal); background: rgba(var(--cor-cat-personal-rgb), 0.1); }
+.cat-study { color: var(--cor-cat-study); background: rgba(var(--cor-cat-study-rgb), 0.1); }
+.cat-work { color: var(--cor-cat-work); background: rgba(var(--cor-cat-work-rgb), 0.1); }
+.cat-urgent { color: var(--cor-cat-urgent); background: rgba(var(--cor-cat-urgent-rgb), 0.1); }
 
 p {
     font-size: 0.95rem;
-    color: #b0aec4;
+    color: var(--cor-texto-sutil);
     line-height: 1.5;
     margin-bottom: 20px;
 }

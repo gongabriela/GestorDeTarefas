@@ -34,7 +34,7 @@
 }
 .task-title {
   font-size: 2.5rem;
-  color: white;
+  color: var(--cor-texto-principal);
   margin: 15px 0;
 }
 
@@ -54,7 +54,7 @@
   padding: 5px 12px;
   border-radius: 20px;
   font-size: 0.8rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(var(--cor-texto-principal-rgb), 0.1);
 }
 
 .status-to-do { color: var(--cor-status-todo); }
@@ -62,8 +62,8 @@
 .status-done { color: var(--cor-status-done); }
 
 .btn-back {
-  background-color: #232135;
-  color: #fff;
+  background-color: var(--cor-fundo-card);
+  color: var(--cor-texto-principal);
   border: 1px solid var(--cor-borda);
   padding: 8px 16px;
   border-radius: 6px;
@@ -82,8 +82,8 @@
 }
 
 .btn-edit, .btn-delete {
-  background-color: #232135;
-  color: #fff;
+  background-color: var(--cor-fundo-card);
+  color: var(--cor-texto-principal);
   border: 1px solid var(--cor-borda);
   padding: 6px 12px;
   border-radius: 6px;
@@ -97,7 +97,7 @@
 .btn-delete:hover { border-color: var(--cor-vermelho); color: var(--cor-vermelho); }
 
 .meta-item {
-  background-color: #232135;
+  background-color: var(--cor-fundo-card);
   border: 1px solid var(--cor-borda);
   border-radius: 12px;
   padding: 20px;
@@ -105,7 +105,7 @@
 }
 
 .meta-item label {
-  color: #8c8b9f;
+  color: var(--cor-texto-secundario);
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 1px;

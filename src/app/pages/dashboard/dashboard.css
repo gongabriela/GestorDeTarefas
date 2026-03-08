@@ -22,11 +22,11 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #fff;
+  color: var(--cor-texto-principal);
 }
 
 .section-header i {
-  color: #00e5ff;
+  color: var(--cor-cat-personal);
   font-size: 1.2rem;
 }
 
@@ -37,20 +37,20 @@
 }
 
 .badge {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(var(--cor-texto-principal-rgb), 0.05);
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 0.8rem;
-  color: #8c8b9f;
+  color: var(--cor-texto-secundario);
 }
 
 .empty-state {
   text-align: center;
   padding: 40px;
-  color: #8c8b9f;
-  background-color: rgba(255, 255, 255, 0.02);
+  color: var(--cor-texto-secundario);
+  background-color: rgba(var(--cor-texto-principal-rgb), 0.02);
   border-radius: 12px;
-  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border: 1px dashed rgba(var(--cor-texto-principal-rgb), 0.1);
 }
 
 @media (max-width: 1024px) {

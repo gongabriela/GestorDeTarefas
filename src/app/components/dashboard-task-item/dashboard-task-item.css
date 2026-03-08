@@ -5,14 +5,14 @@
   border-radius: 12px;
   padding: 16px 24px;
   margin-bottom: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(var(--cor-texto-principal-rgb), 0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   gap: 20px;
 }
 
 .dash-task-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(var(--cor-preto-rgb), 0.2);
 }
 
 .icon-wrapper {
@@ -35,7 +35,7 @@
 
 .task-title {
   margin: 0;
-  color: #fff;
+  color: var(--cor-texto-principal);
   font-size: 1.1rem;
   font-weight: 600;
   overflow-wrap: break-word;
@@ -54,11 +54,11 @@
   padding: 4px 8px;
   border-radius: 4px;
   letter-spacing: 0.5px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(var(--cor-texto-principal-rgb), 0.1);
 }
 
 .task-desc {
-  color: #8c8b9f;
+  color: var(--cor-texto-secundario);
   font-size: 0.85rem;
   white-space: nowrap;
   overflow: hidden;
@@ -76,7 +76,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #8c8b9f;
+  color: var(--cor-texto-secundario);
   font-size: 0.85rem;
   margin-right: 10px;
 }
@@ -84,32 +84,32 @@
 .action-btn {
   background: none;
   border: none;
-  color: #5d5c72;
+  color: var(--cor-texto-desabilitado);
   font-size: 1.1rem;
   cursor: pointer;
   transition: color 0.2s;
 }
 
 .action-btn:hover {
-  color: #fff;
+  color: var(--cor-texto-principal);
 }
 
 .check-btn:hover {
-  color: #00ff88;
+  color: var(--cor-status-done);
 }
 
 /* Cores Dinâmicas das Categorias */
-.cat-personal { color: #00e5ff; }
-.cat-study { color: #b088ff; }
-.cat-work { color: #ffcc00; }
-.cat-urgent { color: #ff4d4f; }
+.cat-personal { color: var(--cor-cat-personal); }
+.cat-study { color: var(--cor-cat-study); }
+.cat-work { color: var(--cor-cat-work); }
+.cat-urgent { color: var(--cor-cat-urgent); }
 
 .is-done-text {
   text-decoration: line-through;
-  color: #5d5c72;
+  color: var(--cor-texto-desabilitado);
 }
 .is-done-btn {
-  color: #00ff88;
+  color: var(--cor-status-done);
 }
 
 @media (max-width: 1024px) {
