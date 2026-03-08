@@ -1,59 +1,56 @@
-# GestorDeTarefas
+# TaskWave - Gestor de Tarefas Pessoal
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.0.
+O **TaskWave** é uma aplicação web de gestão de tarefas (To-Do List & Kanban) desenvolvida como projeto final para o módulo de Fundamentos de Angular. Focada em produtividade e com um design moderno (Dark/Neon Theme), permite aos utilizadores organizar o seu dia a dia de forma visual e intuitiva.
 
-## Development server
+## Funcionalidades Principais
 
-To start a local development server, run:
+* **Dashboard Analítico:** Visão geral das tarefas (Total, Concluídas, Em Progresso, Atrasadas) e lista rápida de tarefas que terminam "Hoje".
+* **Quadro Kanban:** Organização visual das tarefas em colunas (`To Do`, `In Progress`, `Done`) com atualização dinâmica de estado.
+* **Gestão Completa (CRUD):** Criação, leitura, edição e eliminação de tarefas com validação de formulários.
+* **Filtros e Pesquisa:** Capacidade de pesquisar tarefas por texto e filtrá-las por categorias (Work, Personal, Study, Urgent).
+* **Design Responsivo:** Interface 100% adaptada para Desktop, Tablets e Mobile (Mobile-First approach parcial).
 
-```bash
-ng serve
-```
+## Tecnologias Utilizadas
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+* **Framework:** Angular (v17+)
+* **Linguagens:** TypeScript, HTML5, CSS3
+* **Estilização:** CSS puro com CSS Variables, Flexbox e CSS Grid. Design Intrínseco e Media Queries para responsividade.
+* **Ícones:** FontAwesome
 
-## Code scaffolding
+## Live Demo (Acesso Online)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+A aplicação está publicada e a correr na íntegra no GitHub Pages. Pode aceder e testar todas as funcionalidades diretamente aqui:
+**[Clique aqui para abrir o TaskWave](<COLOQUE-AQUI-O-SEU-LINK-DO-GITHUB-PAGES>)**
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Como correr o projeto localmente (Para Desenvolvimento)
 
-```bash
-ng generate --help
-```
+Caso pretenda clonar o projeto para analisar o código ou fazer modificações na sua máquina, siga os passos abaixo:
 
-## Building
+### Pré-requisitos
+Certifique-se de que tem o [Node.js](https://nodejs.org/) e o [Angular CLI](https://angular.io/cli) instalados.
 
-To build the project run:
+### Passos de Instalação
 
-```bash
-ng build
-```
+1. Clone este repositório para a sua máquina:
+   ```bash
+   git clone https://github.com/gongabriela/GestorDeTarefas.git
+    ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+2. Navegue para a pasta do projeto:
+    ```bash
+    cd GestorDeTarefas
+    ```
 
-## Running unit tests
+3. Instale as dependências necessárias:
+    ```bash
+    npm install
+    ```
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+4. Inicie o servidor local do Angular:
+    ```bash
+    ng serve --open
+    ```
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
