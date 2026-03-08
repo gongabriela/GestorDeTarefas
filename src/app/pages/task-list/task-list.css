@@ -79,7 +79,7 @@
     }
 
     .filter-bar-container {
-        justify-content: center;
+        justify-content: flex-start;
     }
 
 }

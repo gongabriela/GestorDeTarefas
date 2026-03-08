@@ -120,3 +120,10 @@
   align-items: center;
   gap: 10px;
 }
+
+p, .task-title {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  max-width: 100%;
+}
