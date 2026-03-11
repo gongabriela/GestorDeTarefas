@@ -8,16 +8,16 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class DeleteModal {
   
-  @Input() taskTitle: string = '';
+  @Input() taskTitle = '';
 
   @Output() confirm = new EventEmitter<void>();
-  @Output() cancel = new EventEmitter<void>();
+  @Output() cancelModal = new EventEmitter<void>();
 
   onConfirm() {
     this.confirm.emit();
   }
 
   onCancel() {
-    this.cancel.emit();
+    this.cancelModal.emit();
   }
 }
