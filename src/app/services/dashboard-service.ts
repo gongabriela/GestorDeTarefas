@@ -1,26 +1,25 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { TaskService } from './task-service';
 import { ITask, CategoryFilter } from '../models/task.model';
 import { IDashboardKPIs } from '../models/kpi-data.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DashboardService {
-
-  constructor(private taskService: TaskService) { }
+  private taskService = inject(TaskService);
 
   getKPIs(category: CategoryFilter = 'All'): IDashboardKPIs {
     let tasks = this.taskService.getTasks();
     const today = this.getTodayAtMidnight();
 
     if (category !== 'All') {
-      tasks = tasks.filter(task => task.category === category);
+      tasks = tasks.filter((task) => task.category === category);
     }
 
-    let kpis: IDashboardKPIs = { total: tasks.length, completed: 0, inProgress: 0, overdue: 0 };
+    const kpis: IDashboardKPIs = { total: tasks.length, completed: 0, inProgress: 0, overdue: 0 };
 
-    tasks.forEach(task => {
+    tasks.forEach((task) => {
       if (task.status === 'Done') kpis.completed++;
       if (task.status === 'Doing') kpis.inProgress++;
       if (this.isTaskOverdue(task, today)) kpis.overdue++;
@@ -33,7 +32,7 @@ export class DashboardService {
     const tasks = this.taskService.getTasks();
     const today = this.getTodayAtMidnight();
 
-    return tasks.filter(task => this.isTaskDueToday(task, today));
+    return tasks.filter((task) => this.isTaskDueToday(task, today));
   }
 
   private getTodayAtMidnight(): Date {
@@ -50,7 +49,7 @@ export class DashboardService {
 
   private isTaskOverdue(task: ITask, today: Date): boolean {
     if (task.status === 'Done') return false;
-    
+
     const taskDate = this.normalizeDate(task.dueDate);
     return taskDate.getTime() < today.getTime();
   }

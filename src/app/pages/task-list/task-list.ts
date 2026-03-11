@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { TaskCard } from '../../components/task-card/task-card';
 import { ITask } from '../../models/task.model';
 import { TaskService } from '../../services/task-service';
@@ -12,14 +12,11 @@ import { TaskListFilterService, SortOption } from '../../services/task-list-filt
   styleUrl: './task-list.css',
 })
 export class TaskList implements OnInit {
+  private taskService = inject(TaskService);
+  private categoryFilterService = inject(CategoryFilterService);
+  taskListFilterService = inject(TaskListFilterService);
 
   tasks: ITask[] = [];
-
-  constructor(
-    private taskService: TaskService,
-    private categoryFilterService: CategoryFilterService,
-    public taskListFilterService: TaskListFilterService
-  ) {}
 
   ngOnInit() {
     this.tasks = this.taskService.getTasks();
@@ -28,42 +25,45 @@ export class TaskList implements OnInit {
   get filteredTasks(): ITask[] {
     const category = this.categoryFilterService.selectedCategory;
     if (category === 'All') return this.tasks;
-    return this.tasks.filter(task => task.category === category);
+    return this.tasks.filter((task) => task.category === category);
   }
 
   get sortedTasks(): ITask[] {
     const filter = this.taskListFilterService.selectedFilter;
     if (filter === 'dueDateAsc') {
-      return [...this.filteredTasks].sort((a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime());
+      return [...this.filteredTasks].sort(
+        (a, b) => new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime(),
+      );
     }
     if (filter === 'creationDate') {
-      return [...this.filteredTasks].sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+      return [...this.filteredTasks].sort(
+        (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
+      );
     }
     return this.filteredTasks;
   }
 
-  get todoTasks() : ITask[] {
-    return this.sortedTasks.filter(task => task.status === 'To Do');
+  get todoTasks(): ITask[] {
+    return this.sortedTasks.filter((task) => task.status === 'To Do');
   }
 
-  get doingTasks() : ITask[] {
-    return this.sortedTasks.filter(task => task.status === 'Doing');
+  get doingTasks(): ITask[] {
+    return this.sortedTasks.filter((task) => task.status === 'Doing');
   }
 
-  get doneTasks() : ITask[] {
-    return this.sortedTasks.filter(task => task.status === 'Done');
+  get doneTasks(): ITask[] {
+    return this.sortedTasks.filter((task) => task.status === 'Done');
   }
 
   handleDeleteTask(selectedTask: ITask) {
-    this.taskService.deleteTaskWithConfirmation(selectedTask)
-      .subscribe(deleted => {
-        if (deleted) {
-          this.tasks = this.taskService.getTasks();
-        }
-      });
+    this.taskService.deleteTaskWithConfirmation(selectedTask).subscribe((deleted) => {
+      if (deleted) {
+        this.tasks = this.taskService.getTasks();
+      }
+    });
   }
 
-  onSortChange(event: Event) : void {
+  onSortChange(event: Event): void {
     const select = event.target as HTMLSelectElement;
     this.taskListFilterService.setFilter(select.value as SortOption);
   }

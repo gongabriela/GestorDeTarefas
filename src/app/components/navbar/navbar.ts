@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CategoryFilter } from '../../models/task.model';
 import { CategoryFilterService } from '../../services/category-filter-service';
@@ -10,7 +10,7 @@ import { CategoryFilterService } from '../../services/category-filter-service';
   styleUrl: './navbar.css',
 })
 export class Navbar {
-  constructor(public categoryFilterService: CategoryFilterService) {}
+  categoryFilterService = inject(CategoryFilterService);
 
   onCategoryChange(event: Event): void {
     const select = event.target as HTMLSelectElement;

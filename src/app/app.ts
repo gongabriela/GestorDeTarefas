@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Sidebar } from './components/sidebar/sidebar';
 import { Navbar } from './components/navbar/navbar';
@@ -7,12 +7,13 @@ import { DeleteModalService } from './services/delete-modal-service';
 
 @Component({
   selector: 'app-root',
-  imports: [Sidebar, Navbar, RouterOutlet, DeleteModal ],
+  imports: [Sidebar, Navbar, RouterOutlet, DeleteModal],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
-  constructor(public deleteModalService: DeleteModalService) {}
+  deleteModalService = inject(DeleteModalService);
+
   onModalDeleteConfirm() {
     this.deleteModalService.closeConfirm(true);
   }
