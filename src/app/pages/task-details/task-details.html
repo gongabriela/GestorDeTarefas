@@ -23,14 +23,14 @@
         <h1 class="task-title">{{ task.title }}</h1>
         
         <div class="description-section">
-          <label>Description</label>
+          <span>Description</span>
           <p>{{ task.description || 'No description provided.' }}</p>
         </div>
       </section>
 
       <aside class="details-sidebar">
         <div class="meta-item">
-          <label>Category</label>
+          <span>Category</span>
           <div class="value" [ngClass]="'cat-' + task.category.toLowerCase()">
             <i class="fa-solid" [ngClass]="task.category | categoryIcon"></i>
             {{ task.category }}
@@ -38,7 +38,7 @@
         </div>
 
         <div class="meta-item">
-          <label>Due Date</label>
+          <span>Due Date</span>
           <div class="value">
             <i class="fa-regular fa-calendar"></i>
             {{ task.dueDate | date:'mediumDate' }}
