@@ -1,51 +1,54 @@
-<div class="details-overlay" *ngIf="task">
-  <div class="details-container">
-    
-    <header class="details-header">
-      <button class="btn-back" (click)="goBack()">
-        <i class="fa-solid fa-arrow-left"></i> Back
-      </button>
-      <div class="header-actions">
-        <button class="btn-edit" [routerLink]="['/edit-task', task.id]">
-          <i class="fa-solid fa-pen-to-square"></i> Edit
-        </button>
-        <button class="btn-delete" (click)="deleteTask()">
-          <i class="fa-solid fa-trash-can"></i>
-        </button>
-      </div>
-    </header>
-
-    <main class="details-content">
-      <section class="main-info">
-        <div class="status-badge" [ngClass]="'status-' + task.status.toLowerCase().replace(' ', '-')">
-          {{ task.status }}
-        </div>
-        <h1 class="task-title">{{ task.title }}</h1>
+<div class="details-overlay">
+  @if (task) {
+    <div class="details-container">
         
-        <div class="description-section">
-          <span>Description</span>
-          <p>{{ task.description || 'No description provided.' }}</p>
-        </div>
-      </section>
-
-      <aside class="details-sidebar">
-        <div class="meta-item">
-          <span>Category</span>
-          <div class="value" [ngClass]="'cat-' + task.category.toLowerCase()">
-            <i class="fa-solid" [ngClass]="task.category | categoryIcon"></i>
-            {{ task.category }}
+        <header class="details-header">
+          <button class="btn-back" (click)="goBack()">
+            <i class="fa-solid fa-arrow-left"></i> Back
+          </button>
+          <div class="header-actions">
+            <button class="btn-edit" [routerLink]="['/edit-task', task.id]">
+              <i class="fa-solid fa-pen-to-square"></i> Edit
+            </button>
+            <button class="btn-delete" (click)="deleteTask()">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
           </div>
-        </div>
+        </header>
 
-        <div class="meta-item">
-          <span>Due Date</span>
-          <div class="value">
-            <i class="fa-regular fa-calendar"></i>
-            {{ task.dueDate | date:'mediumDate' }}
-          </div>
-        </div>
-      </aside>
-    </main>
+        <main class="details-content">
+          <section class="main-info">
+            <div class="status-badge" [ngClass]="'status-' + task.status.toLowerCase().replace(' ', '-')">
+              {{ task.status }}
+            </div>
+            <h1 class="task-title">{{ task.title }}</h1>
+            
+            <div class="description-section">
+              <span>Description</span>
+              <p>{{ task.description || 'No description provided.' }}</p>
+            </div>
+          </section>
 
-  </div>
+          <aside class="details-sidebar">
+            <div class="meta-item">
+              <span>Category</span>
+              <div class="value" [ngClass]="'cat-' + task.category.toLowerCase()">
+                <i class="fa-solid" [ngClass]="task.category | categoryIcon"></i>
+                {{ task.category }}
+              </div>
+            </div>
+
+            <div class="meta-item">
+              <span>Due Date</span>
+              <div class="value">
+                <i class="fa-regular fa-calendar"></i>
+                {{ task.dueDate | date:'mediumDate' }}
+              </div>
+            </div>
+          </aside>
+        </main>
+
+      </div>
+  }
+  
 </div>
