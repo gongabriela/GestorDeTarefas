@@ -1,0 +1,37 @@
+# Declaração dos serviços (contentores) da aplicação
+services:
+  
+  # 1. Serviço responsável pelo frontend Angular
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: angular-app
+    # A Dica do prof: nginx dentro do container usa a porta 80
+    ports:
+      - "${APP_PORT}:80" 
+    depends_on:
+      - api
+    environment:
+      API_URL: "${API_URL}"
+
+  # 2. Serviço responsável pela API mock
+  api:
+    image: node:20-alpine
+    container_name: mock-api
+    working_dir: /app
+    environment:
+      JSON_SERVER_WATCH: 1
+    # Comando executado quando o container inicia
+    command: >
+      sh -c "npm install -g json-server && json-server --watch db.json --host 0.0.0.0 --port 3000"
+    ports:
+      - "${API_PORT}:3000"
+    # Volume para montar o ficheiro db.json dentro do container
+    volumes:
+      - ./mock-api/db.json:/app/db.json
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
