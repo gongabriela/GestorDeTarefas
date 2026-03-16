@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// Agora importamos as ferramentas de Reactive Forms em vez de FormsModule
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms'; 
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth';
@@ -8,75 +7,79 @@ import { AuthService } from '../../services/auth';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule], // <-- Muito importante estar aqui!
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.html',
   styleUrls: ['./login.css']
 })
 export class Login implements OnInit {
-  // --- AS FERRAMENTAS ---
-  private fb = inject(FormBuilder); // Construtor de formulários
+
+  private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  // --- AS VARIÁVEIS DO ECRÃ ---
-  loginForm!: FormGroup; // O formulário (muda de taskForm para loginForm no HTML!)
+  loginForm!: FormGroup;
   isRegisterMode = false;
-  apiErrorMessage = ''; // Para mostrar se a conta não existir
+  apiErrorMessage = ''; 
 
-  // --- PREPARAÇÃO (Corre quando o ecrã abre) ---
   ngOnInit(): void {
-    // Aqui construímos as regras das caixas de texto
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      name: [''] // Deixamos vazio. Só vamos exigir o nome se for Registo.
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      name: ['']
     });
   }
 
-  // --- FUNÇÕES DOS BOTÕES ---
-
-  // Alterna entre Login e Registo (precisas de criar este botão no HTML!)
+  // Alterna entre Login e Registo
   toggleMode(): void {
     this.isRegisterMode = !this.isRegisterMode;
-    this.apiErrorMessage = ''; // Limpa os erros ao trocar
-  }
-
-  // Botão do X ou "Cancel"
-  onCancel(): void {
-    this.router.navigate(['/']); // Manda o utilizador de volta para a página principal
-  }
-
-  // Quando clicam no botão azul principal
-  onSubmit(): void {
     this.apiErrorMessage = '';
+    this.loginForm.reset(); 
+  }
 
-    // Se o formulário tiver erros (ex: email inválido), a função para aqui!
+  onCancel(): void {
+    this.router.navigate(['/']);
+  }
+
+  async onSubmit(): Promise<void> {
+    this.apiErrorMessage = '';
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched(); // Fica tudo vermelho para o utilizador ver
       return;
     }
-
-    // Tiramos os valores das caixas de texto
-    const email = this.loginForm.value.email;
-    const name = this.loginForm.value.name;
-
-    if (this.isRegisterMode) {
-      // REGISTO
-      this.authService.register(name, email).subscribe({
-        next: () => this.router.navigate(['/']), // Sucesso: vai para as tarefas
-        error: () => this.apiErrorMessage = 'Ocorreu um erro ao criar a conta.'
-      });
-    } else {
-      // LOGIN
-      this.authService.login(email).subscribe({
-        next: (users) => {
-          if (users.length > 0) {
-            this.router.navigate(['/']); // Sucesso: encontrou conta!
-          } else {
-            this.apiErrorMessage = 'Não existe nenhuma conta com este email.';
-          }
-        },
-        error: () => this.apiErrorMessage = 'Erro de ligação ao servidor.'
-      });
+    try {
+      if (this.isRegisterMode)
+        await this.handleRegistration();
+      else
+        await this.handleLogin();
+      await this.router.navigate(['/']);
+    } catch (error: unknown) {
+      this.handleAuthError(error);
     }
   }
+
+  private async handleRegistration(): Promise<void> {
+    const { email, password, name } = this.loginForm.value;
+    if (!name) {
+      throw new Error('Name is required for registration.');
+    }
+    await this.authService.register(email, password, name);
+  }
+
+  private async handleLogin(): Promise<void> {
+    const { email, password } = this.loginForm.value;
+    await this.authService.login(email, password);
+  }
+
+  private handleAuthError(error: unknown): void {
+    if (error instanceof Error) {
+      this.apiErrorMessage = error.message;
+    }
+    else if (typeof error === 'string') {
+      this.apiErrorMessage = error;
+    }
+    else {
+      this.apiErrorMessage = 'An unknown error occurred.';
+    }
+  }
+
 }
