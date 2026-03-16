@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { KpiCard } from '../../components/kpi-card/kpi-card';
 import { KpiData, IDashboardKPIs } from '../../models/kpi-data.model';
 import { DashboardTaskItem } from '../../components/dashboard-task-item/dashboard-task-item';
@@ -16,13 +16,11 @@ import { CategoryFilterService } from '../../services/category-filter-service';
   styleUrl: './dashboard.css',
 })
 export class Dashboard implements OnInit {
-  dueTodayTasks: ITask[] = [];
+  private dashboardService = inject(DashboardService);
+  private taskService = inject(TaskService);
+  private categoryFilterService = inject(CategoryFilterService);
 
-  constructor(
-    private dashboardService: DashboardService,
-    private taskService: TaskService,
-    private categoryFilterService: CategoryFilterService
-  ) {}
+  dueTodayTasks: ITask[] = [];
 
   ngOnInit(): void {
     this.dueTodayTasks = this.dashboardService.getTasksDueToday();
@@ -35,18 +33,17 @@ export class Dashboard implements OnInit {
       { title: 'Total Tasks', value: kpis.total, color: '#ffcc00' },
       { title: 'Completed', value: kpis.completed, color: '#00ff88' },
       { title: 'In Progress', value: kpis.inProgress, color: '#00e5ff' },
-      { title: 'Overdue', value: kpis.overdue, color: '#ff4d4f' }
+      { title: 'Overdue', value: kpis.overdue, color: '#ff4d4f' },
     ];
   }
 
   get filteredDueTodayTasks(): ITask[] {
     const category = this.categoryFilterService.selectedCategory;
     if (category === 'All') return this.dueTodayTasks;
-    return this.dueTodayTasks.filter(task => task.category === category);
+    return this.dueTodayTasks.filter((task) => task.category === category);
   }
 
-  handleCompleteTask(taskId: number) : void {
-    
+  handleCompleteTask(taskId: number): void {
     const task: ITask | undefined = this.taskService.getTaskById(taskId);
     if (task) {
       task.status = 'Done';

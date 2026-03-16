@@ -1,0 +1,61 @@
+{
+  "taskList": [
+    {
+      "id": 1772732033388,
+      "title": "implementar botao de deletar",
+      "description": "efubweofewnbfoiewnbownbwowbnoaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaawefwefweasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "category": "Personal",
+      "status": "To Do",
+      "dueDate": "2026-03-08T00:00:00.000Z",
+      "createdAt": "2026-03-05T17:33:53.388Z"
+    },
+    {
+      "id": 1772732033390,
+      "title": "implementar botao de deletar",
+      "description": "",
+      "category": "design",
+      "status": "To Do",
+      "dueDate": "2026-03-06T00:00:00.000Z",
+      "createdAt": "2026-03-05T17:33:53.390Z"
+    },
+    {
+      "id": 1772884865768,
+      "title": "sdfafafd",
+      "description": "",
+      "category": "Personal",
+      "status": "Doing",
+      "dueDate": "2026-03-13T00:00:00.000Z",
+      "createdAt": "2026-03-07T12:01:05.768Z"
+    },
+    {
+      "id": 1772887525808,
+      "title": "wqqwedwqe",
+      "description": "",
+      "category": "Work",
+      "status": "Done",
+      "dueDate": "2026-03-31T00:00:00.000Z",
+      "createdAt": "2026-03-07T12:45:25.808Z"
+    },
+    {
+      "id": 1772916131451,
+      "title": "wdwdwewe",
+      "description": "",
+      "category": "Personal",
+      "status": "Doing",
+      "dueDate": "2026-03-01T00:00:00.000Z",
+      "createdAt": "2026-03-07T20:42:11.451Z"
+    }
+  ],
+  "users": [
+    {
+      "id": 1773507161341,
+      "name": "Gabriela",
+      "email": "ggabigoncal@gmail.com"
+    },
+    {
+      "id": 1773654183763,
+      "name": "Gabi",
+      "email": "ggabigoncal@gmail.com"
+    }
+  ]
+}

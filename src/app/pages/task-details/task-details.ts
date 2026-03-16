@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../../services/task-service';
@@ -9,16 +9,14 @@ import { CategoryIconPipe } from '../../pipes/category-icon-pipe';
   standalone: true,
   imports: [CommonModule, RouterLink, CategoryIconPipe],
   templateUrl: './task-details.html',
-  styleUrl: './task-details.css'
+  styleUrl: './task-details.css',
 })
 export class TaskDetails implements OnInit {
-  task?: ITask;
+  private route = inject(ActivatedRoute);
+  private taskService = inject(TaskService);
+  private router = inject(Router);
 
-  constructor(
-    private route: ActivatedRoute,
-    private taskService: TaskService,
-    private router: Router
-  ) {}
+  task?: ITask;
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -33,12 +31,11 @@ export class TaskDetails implements OnInit {
 
   deleteTask(): void {
     if (this.task) {
-      this.taskService.deleteTaskWithConfirmation(this.task)
-        .subscribe(deleted => {
-          if (deleted) {
-            this.goBack();
-          }
-        });
+      this.taskService.deleteTaskWithConfirmation(this.task).subscribe((deleted) => {
+        if (deleted) {
+          this.goBack();
+        }
+      });
     }
   }
 }
