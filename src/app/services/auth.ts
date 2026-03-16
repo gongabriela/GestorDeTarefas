@@ -1,30 +1,69 @@
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Injectable,  } from '@angular/core';
 import { IUser } from '../models/user';
 import { environment } from '../../environments/environment';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 @Injectable({ providedIn: 'root' })
 
 export class AuthService {
   
-  private http = inject(HttpClient);
-  private readonly API_URL = `${environment.apiUrl}/users`;
+  private supabase: SupabaseClient;
 
-  register(name: string, email: string): Observable<IUser> {
-    const newUser: IUser = { 
-      id: Date.now(), 
-      name: name, 
-      email: email 
+  constructor() {
+    this.supabase = createClient(
+      environment.supabaseUrl,
+      environment.supabaseKey
+    );
+  }
+
+  async register(email: string, password: string, name: string): Promise<IUser> {
+    const { data, error } = await this.supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { full_name: name } 
+      }
+    });
+    
+    if (error) throw error; 
+    if (!data.user) throw new Error('Erro ao criar utilizador');
+
+    const newUser: IUser = {
+      id: data.user.id,
+      email: data.user.email || '',
+      name: data.user.user_metadata['full_name']
     };
-    return this.http.post<IUser>(this.API_URL, newUser);
+
+    return newUser;
   }
 
-  login(email: string): Observable<IUser[]> {
-    return this.http.get<IUser[]>(`${this.API_URL}?email=${email}`);
+  async login(email: string, password: string): Promise<IUser> {
+    const { data, error } = await this.supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    
+    if (error) throw error;
+    if (!data.user) throw new Error('Utilizador não encontrado');
+
+    const loggedInUser: IUser = {
+      id: data.user.id,
+      email: data.user.email || '',
+      name: data.user.user_metadata['full_name'] || 'Utilizador'
+    };
+
+    return loggedInUser;
   }
 
-  editProfile(id: number, name: string, email: string): Observable<IUser> {
+  async logout() {
+    const { error } = await this.supabase.auth.signOut();
+    if (error) throw error;
+  }
+
+}
+
+/**
+ *   editProfile(id: number, name: string, email: string): Observable<IUser> {
     const updatedUser: Partial<IUser> = { name, email };
     return this.http.patch<IUser>(`${this.API_URL}/${id}`, updatedUser);
   }
@@ -33,4 +72,4 @@ export class AuthService {
     return this.http.delete<void>(`${this.API_URL}/${id}`);
   }
 
-}
+ */
