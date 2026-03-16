@@ -29,7 +29,7 @@ services:
       - "${API_PORT}:3000"
     # Volume para montar o ficheiro db.json dentro do container
     volumes:
-      - ./mock-api/db.json:/app/db.json
+      - ./mock-api:/app
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:3000"]
       interval: 10s
