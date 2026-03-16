@@ -15,7 +15,7 @@ import { environment } from '../environments/environment';
 export class App implements OnInit {
 
   ngOnInit() {
-    this.loadUsers();
+    this.loadTaskList();
   }
 
   deleteModalService = inject(DeleteModalService);
@@ -27,11 +27,11 @@ export class App implements OnInit {
     this.deleteModalService.closeConfirm(false);
   }
 
-  async loadUsers() {
-    const response = await fetch(environment.apiUrl + '/users');
-    const users = await response.json();
+  async loadTaskList() {
+    const response = await fetch(environment.apiUrl + '/taskList');
+    const tasks = await response.json();
 
-    console.log(users);
+    console.log(tasks);
   }
 
 }

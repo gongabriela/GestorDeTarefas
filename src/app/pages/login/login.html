@@ -1,0 +1,74 @@
+<div class="modal-overlay">
+    <div class="login-modal">
+        <div class="modal-header">
+            <div class="warning-container">
+                <p class="modal-header-warning">ACTION REQUIRED</p>
+                <button class="close-button" (click)="onCancel()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="header-text">
+                <h2 class="login-modal-title">{{ isRegisterMode ? 'Register' : 'Login' }}</h2>
+                <p> {{ isRegisterMode ? 'Fill in the details below to create an account.' : 'Fill in the details below to log in.' }}</p>
+            </div>
+            
+            @if (apiErrorMessage) {
+                <p class="form-error-text" style="margin-top: 15px; font-weight: bold; font-size: 1rem;">
+                    <i class="fa-solid fa-circle-exclamation"></i> {{ apiErrorMessage }}
+                </p>
+            }
+        </div>
+
+        <form [formGroup]="loginForm" class="form-container" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" 
+                    id="login-email" 
+                    formControlName="email" 
+                    placeholder="e.g. john.doe@example.com"
+                    [ngClass]="{ 'input-error': loginForm.get('email')?.invalid && loginForm.get('email')?.touched }">
+                
+                @if (loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched) {
+                    <p class="form-error-text">
+                        <i class="fa-solid fa-circle-exclamation"></i> Email is required.
+                    </p>
+                }
+                @if (loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched) {
+                    <p class="form-error-text">
+                        <i class="fa-solid fa-circle-exclamation"></i> Please enter a valid email address.
+                    </p>
+                }
+            </div>
+
+            @if (isRegisterMode) {
+                <div class="form-group">
+                    <label for="login-name">Name</label>
+                    <input type="text" 
+                        id="login-name" 
+                        formControlName="name" 
+                        placeholder="e.g. John Doe"
+                        [ngClass]="{ 'input-error': loginForm.get('name')?.invalid && loginForm.get('name')?.touched }">
+                    @if (loginForm.get('name')?.invalid && loginForm.get('name')?.touched) {
+                        <p class="form-error-text">
+                            <i class="fa-solid fa-circle-exclamation"></i> Name is required.
+                        </p>
+                    }
+                </div>
+            }
+
+            <div class="modal-actions">
+                <button type="submit" class="btn-create">
+                    <i class="fa-solid" [ngClass]="isRegisterMode ? 'fa-floppy-disk' : 'fa-circle-plus'"></i>
+                    {{ isRegisterMode ? 'Create Account' : 'Login' }}
+                </button>
+                <button type="button" class="btn-cancel" (click)="onCancel()">Cancel</button>
+            </div>
+
+            <div style="text-align: center; margin-top: 10px;">
+                <button type="button" (click)="toggleMode()" style="background: none; border: none; color: var(--cor-azul-ceu); cursor: pointer; text-decoration: underline; font-family: inherit; font-size: 0.9rem;">
+                    {{ isRegisterMode ? 'Already have an account? Login here.' : 'Need an account? Register here.' }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
