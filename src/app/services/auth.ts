@@ -1,19 +1,40 @@
 import { Injectable,  } from '@angular/core';
 import { IUser } from '../models/user';
 import { environment } from '../../environments/environment';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 
 export class AuthService {
   
   private supabase: SupabaseClient;
-
+  private userSubject = new BehaviorSubject<IUser | null>(null);
+  
+  currentUser$ = this.userSubject.asObservable();
+  
   constructor() {
     this.supabase = createClient(
       environment.supabaseUrl,
       environment.supabaseKey
     );
+
+    this.supabase.auth.getSession().then(({ data: { session } }) => {
+      this.userSubject.next(this.mapSupabaseUserToIUser(session?.user || null));
+    });
+
+    this.supabase.auth.onAuthStateChange((event, session) => {
+      this.userSubject.next(this.mapSupabaseUserToIUser(session?.user || null));
+    });
+  }
+
+  private mapSupabaseUserToIUser(supabaseUser: User | null): IUser | null {
+    if (!supabaseUser) return null;
+    return {
+      id: supabaseUser.id,
+      email: supabaseUser.email || '',
+      name: supabaseUser.user_metadata['full_name'] || 'Utilizador'
+    };
   }
 
   async register(email: string, password: string, name: string): Promise<IUser> {
@@ -28,13 +49,7 @@ export class AuthService {
     if (error) throw error; 
     if (!data.user) throw new Error('Erro ao criar utilizador');
 
-    const newUser: IUser = {
-      id: data.user.id,
-      email: data.user.email || '',
-      name: data.user.user_metadata['full_name']
-    };
-
-    return newUser;
+    return this.mapSupabaseUserToIUser(data.user)!;
   }
 
   async login(email: string, password: string): Promise<IUser> {
@@ -46,13 +61,7 @@ export class AuthService {
     if (error) throw error;
     if (!data.user) throw new Error('Utilizador não encontrado');
 
-    const loggedInUser: IUser = {
-      id: data.user.id,
-      email: data.user.email || '',
-      name: data.user.user_metadata['full_name'] || 'Utilizador'
-    };
-
-    return loggedInUser;
+    return this.mapSupabaseUserToIUser(data.user)!;
   }
 
   async logout() {
