@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms'; 
 import { Router } from '@angular/router';
@@ -20,6 +20,7 @@ export class Login implements OnInit {
   loginForm!: FormGroup;
   isRegisterMode = false;
   apiErrorMessage = ''; 
+  cdr = inject(ChangeDetectorRef); //APAGAR garante que apareca o erro de invalid credentials
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -34,6 +35,13 @@ export class Login implements OnInit {
     this.isRegisterMode = !this.isRegisterMode;
     this.apiErrorMessage = '';
     this.loginForm.reset(); 
+
+    const nameControl = this.loginForm.get('name');
+    if (this.isRegisterMode) 
+      nameControl?.setValidators([Validators.required, Validators.minLength(2)]);
+    else 
+      nameControl?.clearValidators();
+    nameControl?.updateValueAndValidity();
   }
 
   onCancel(): void {
@@ -43,7 +51,7 @@ export class Login implements OnInit {
   async onSubmit(): Promise<void> {
     this.apiErrorMessage = '';
     if (this.loginForm.invalid) {
-      this.loginForm.markAllAsTouched(); // Fica tudo vermelho para o utilizador ver
+      this.loginForm.markAllAsTouched();
       return;
     }
     try {
@@ -54,14 +62,12 @@ export class Login implements OnInit {
       await this.router.navigate(['/']);
     } catch (error: unknown) {
       this.handleAuthError(error);
+      this.cdr.markForCheck(); //APAGAR garante que apareca o erro de invalid credentials
     }
   }
 
   private async handleRegistration(): Promise<void> {
     const { email, password, name } = this.loginForm.value;
-    if (!name) {
-      throw new Error('Name is required for registration.');
-    }
     await this.authService.register(email, password, name);
   }
 
