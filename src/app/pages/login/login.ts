@@ -16,26 +16,17 @@ export class Login implements OnInit {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
-  private cdr = inject(ChangeDetectorRef);
 
   loginForm!: FormGroup;
   isRegisterMode = false;
   apiErrorMessage = ''; 
+  cdr = inject(ChangeDetectorRef); //APAGAR garante que apareca o erro de invalid credentials
 
-ngOnInit(): void {
+  ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: [
-        '', 
-        [Validators.required, Validators.email, Validators.maxLength(254)]
-      ],
-      password: [
-        '', 
-        [Validators.required, Validators.minLength(6), Validators.maxLength(128)]
-      ],
-      name: [
-        '', 
-        [Validators.required, Validators.minLength(2), Validators.maxLength(50)]
-      ]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      name: ['']
     });
   }
 
@@ -44,6 +35,13 @@ ngOnInit(): void {
     this.isRegisterMode = !this.isRegisterMode;
     this.apiErrorMessage = '';
     this.loginForm.reset(); 
+
+    const nameControl = this.loginForm.get('name');
+    if (this.isRegisterMode) 
+      nameControl?.setValidators([Validators.required, Validators.minLength(2)]);
+    else 
+      nameControl?.clearValidators();
+    nameControl?.updateValueAndValidity();
   }
 
   onCancel(): void {
@@ -53,7 +51,7 @@ ngOnInit(): void {
   async onSubmit(): Promise<void> {
     this.apiErrorMessage = '';
     if (this.loginForm.invalid) {
-      this.loginForm.markAllAsTouched(); // Fica tudo vermelho para o utilizador ver
+      this.loginForm.markAllAsTouched();
       return;
     }
     try {
@@ -64,7 +62,7 @@ ngOnInit(): void {
       await this.router.navigate(['/']);
     } catch (error: unknown) {
       this.handleAuthError(error);
-      this.cdr.detectChanges();
+      this.cdr.markForCheck(); //APAGAR garante que apareca o erro de invalid credentials
     }
   }
 

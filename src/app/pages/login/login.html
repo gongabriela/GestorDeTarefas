@@ -69,9 +69,14 @@
                         formControlName="name" 
                         placeholder="e.g. John Doe"
                         [ngClass]="{ 'input-error': loginForm.get('name')?.invalid && loginForm.get('name')?.touched }">
-                    @if (loginForm.get('name')?.invalid && loginForm.get('name')?.touched) {
+                    @if (loginForm.get('name')?.hasError('required') && loginForm.get('name')?.touched) {
                         <p class="form-error-text">
                             <i class="fa-solid fa-circle-exclamation"></i> Name is required.
+                        </p>
+                    }
+                    @if (loginForm.get('name')?.hasError('minlength') && loginForm.get('name')?.touched) {
+                        <p class="form-error-text">
+                            <i class="fa-solid fa-circle-exclamation"></i> Name must be at least 2 characters.
                         </p>
                     }
                 </div>
