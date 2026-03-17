@@ -23,6 +23,7 @@ export class AuthService {
       this.userSubject.next(this.mapSupabaseUserToIUser(session?.user || null));
     });
 
+    //APAGar VER O QUE E ESSE EVENT
     this.supabase.auth.onAuthStateChange((event, session) => {
       this.userSubject.next(this.mapSupabaseUserToIUser(session?.user || null));
     });
