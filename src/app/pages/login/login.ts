@@ -21,11 +21,20 @@ export class Login implements OnInit {
   isRegisterMode = false;
   apiErrorMessage = ''; 
 
-  ngOnInit(): void {
+ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      name: ['']
+      email: [
+        '', 
+        [Validators.required, Validators.email, Validators.maxLength(254)]
+      ],
+      password: [
+        '', 
+        [Validators.required, Validators.minLength(6), Validators.maxLength(128)]
+      ],
+      name: [
+        '', 
+        [Validators.minLength(2), Validators.maxLength(50)]
+      ]
     });
   }
 
