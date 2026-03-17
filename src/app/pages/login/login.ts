@@ -34,7 +34,7 @@ ngOnInit(): void {
       ],
       name: [
         '', 
-        [Validators.minLength(2), Validators.maxLength(50)]
+        [Validators.required, Validators.minLength(2), Validators.maxLength(50)]
       ]
     });
   }
@@ -70,9 +70,6 @@ ngOnInit(): void {
 
   private async handleRegistration(): Promise<void> {
     const { email, password, name } = this.loginForm.value;
-    if (!name) {
-      throw new Error('Name is required for registration.');
-    }
     await this.authService.register(email, password, name);
   }
 
