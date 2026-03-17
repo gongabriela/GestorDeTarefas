@@ -24,6 +24,36 @@
             <i class="fa-solid fa-plus"></i>
             <span>Add Task</span>
         </a>
+
+        <div class="auth-section">
+            @if (currentUser$ | async; as user) {
+                <div class="user-menu-container">
+                    <button class="user-icon-btn" (click)="toggleDropdown()">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span class="user-name">{{ user.name }}</span>
+                        <i class="fa-solid fa-chevron-down chevron-icon"></i>
+                    </button>
+
+                    @if (isDropdownOpen) {
+                        <div class="dropdown-menu">
+                            <a routerLink="/settings" class="dropdown-item" (click)="closeDropdown()">
+                                <i class="fa-solid fa-gear"></i>
+                                <span>Settings</span>                        
+                            </a>
+                            <button class="dropdown-item logout-btn" (click)="onLogout()">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <span>Logout</span>
+                            </button>
+                        </div>
+                    }
+                </div>
+            }
+            @else {
+                <a routerLink="/login" class="login-btn">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <span>Login</span>
+                </a>
+            }
+        </div>
     </section>
-    
 </nav>
