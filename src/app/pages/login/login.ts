@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms'; 
 import { Router } from '@angular/router';
@@ -16,6 +16,7 @@ export class Login implements OnInit {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef);
 
   loginForm!: FormGroup;
   isRegisterMode = false;
@@ -63,6 +64,7 @@ ngOnInit(): void {
       await this.router.navigate(['/']);
     } catch (error: unknown) {
       this.handleAuthError(error);
+      this.cdr.detectChanges();
     }
   }
 
