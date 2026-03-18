@@ -14,6 +14,8 @@ import { environment } from '../environments/environment';
 })
 export class App implements OnInit {
 
+  erroProposital: number = 'Isto vai falhar';
+  
   ngOnInit() {
     this.loadTaskList();
   }
