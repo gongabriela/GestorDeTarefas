@@ -1,58 +1,61 @@
 # TaskWave - Gestor de Tarefas Pessoal
 
-O **TaskWave** é uma aplicação web de gestão de tarefas (To-Do List & Kanban) desenvolvida como projeto final para o módulo de Fundamentos de Angular. Focada em produtividade e com um design moderno (Dark/Neon Theme), permite aos utilizadores organizar o seu dia a dia de forma visual e intuitiva.
-
 [![CI](https://github.com/gongabriela/GestorDeTarefas/actions/workflows/ci.yml/badge.svg)](https://github.com/gongabriela/GestorDeTarefas/actions/workflows/ci.yml)
+[![CD](https://github.com/gongabriela/GestorDeTarefas/actions/workflows/deploy.yml/badge.svg)](https://github.com/gongabriela/GestorDeTarefas/actions/workflows/deploy.yml)
 
-## Funcionalidades Principais
+O **TaskWave** é uma aplicação web de gestão de tarefas (To-Do List & Kanban) desenvolvida como projeto final para o módulo de Integração de Processos. Originalmente focada em Fundamentos de Angular, a aplicação evoluiu para incluir práticas modernas de DevOps, integrando um pipeline completo de CI/CD e autenticação como serviço (BaaS).
 
-* **Dashboard Analítico:** Visão geral das tarefas (Total, Concluídas, Em Progresso, Atrasadas) e lista rápida de tarefas que terminam "Hoje".
+## 🚀 Funcionalidades Principais
+
+* **Dashboard Analítico:** Visão geral das tarefas (Total, Concluídas, Em Progresso, Atrasadas) e lista de prioridades diárias.
 * **Quadro Kanban:** Organização visual das tarefas em colunas (`To Do`, `In Progress`, `Done`) com atualização dinâmica de estado.
-* **Gestão Completa (CRUD):** Criação, leitura, edição e eliminação de tarefas com validação de formulários.
-* **Filtros e Pesquisa:** Capacidade de pesquisar tarefas por texto e filtrá-las por categorias (Work, Personal, Study, Urgent).
-* **Design Responsivo:** Interface 100% adaptada para Desktop, Tablets e Mobile (Mobile-First approach parcial).
+* **Gestão Completa (CRUD):** Criação, leitura, edição e eliminação de tarefas validadas em tempo real.
+* **Filtros e Pesquisa:** Pesquisa por texto e filtragem por categorias (Work, Personal, Study, Urgent).
+* **Design Responsivo:** Interface Mobile-First adaptada (Dark/Neon Theme) com ícones FontAwesome otimizados via CDN.
 
-## Tecnologias Utilizadas
+## 🏗️ Arquitetura e Tecnologias
 
-* **Framework:** Angular (v17+)
-* **Linguagens:** TypeScript, HTML5, CSS3
-* **Estilização:** CSS puro com CSS Variables, Flexbox e CSS Grid. Design Intrínseco e Media Queries para responsividade.
-* **Ícones:** FontAwesome
+### Frontend & Dados
+* **Framework:** Angular (v17+) com TypeScript.
+* **Estilização:** CSS puro (Variables, Flexbox, Grid).
+* **Armazenamento de Dados:** `localStorage` nativo do navegador para gestão rápida e local do estado das tarefas.
+* **Autenticação:** Integração com **Supabase Auth** para gestão segura de login e sessões de utilizadores.
 
-## Live Demo (Acesso Online)
+### DevOps & CI/CD
+* **Integração Contínua (CI):** GitHub Actions configurado para executar validações de Linting e Build em cada Pull Request, protegendo a branch principal contra erros de compilação.
+* **Entrega Contínua (CD):** Deploy automatizado e sem intervenção humana para o GitHub Pages em cada merge aprovado.
+* **Segurança:** Gestão de credenciais de ambiente através de GitHub Secrets (chaves da API não expostas no código fonte).
+* **Gestão de Versões:** Estratégia de feature-branches com *Pull Request Templates* e proteção rigorosa da branch `develop-idp`.
 
-A aplicação está publicada e a correr na íntegra no GitHub Pages. Pode aceder e testar todas as funcionalidades diretamente aqui:
+## 🌐 Live Demo (Acesso Online)
+
+A aplicação está publicada e a ser atualizada automaticamente pelo nosso pipeline de CD. Pode testar todas as funcionalidades diretamente aqui:
 **[Clique aqui para abrir o TaskWave](https://gongabriela.github.io/GestorDeTarefas/#/dashboard)**
 
 ---
 
-## Como correr o projeto localmente (Para Desenvolvimento)
+## 💻 Como correr o projeto localmente
 
-Caso pretenda clonar o projeto para analisar o código ou fazer modificações na sua máquina, siga os passos abaixo:
+Caso pretenda clonar o projeto para análise ou desenvolvimento:
 
 ### Pré-requisitos
-Certifique-se de que tem o [Node.js](https://nodejs.org/) e o [Angular CLI](https://angular.io/cli) instalados.
+* [Node.js](https://nodejs.org/) (v20+) e [Angular CLI](https://angular.io/cli) instalados.
+* Uma conta Supabase (apenas para configurar as variáveis de ambiente de autenticação).
 
 ### Passos de Instalação
 
-1. Clone este repositório para a sua máquina:
+1. Clone o repositório:
    ```bash
-   git clone https://github.com/gongabriela/GestorDeTarefas.git
-    ```
-
-2. Navegue para a pasta do projeto:
+   git clone [https://github.com/gongabriela/GestorDeTarefas.git](https://github.com/gongabriela/GestorDeTarefas.git)
+   ```
+2. Navegue para a pasta e instale as dependências:
     ```bash
     cd GestorDeTarefas
-    ```
-
-3. Instale as dependências necessárias:
-    ```bash
     npm install
     ```
-
-4. Inicie o servidor local do Angular:
+3. Configure o ambiente:
+   Crie um ficheiro `src/environments/environment.development.ts` e adicione as suas credenciais do Supabase (`supabaseUrl` e `supabaseKey`).
+4. Inicie o servidor local:
     ```bash
     ng serve --open
     ```
-
----
