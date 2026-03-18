@@ -2,7 +2,7 @@ name: CI
 
 on:
   pull_request:
-    branches: [ "develop-idp" ]
+    branches: [ "develop-idp", "main", "feature/supabase-auth" ]
   workflow_dispatch: 
 
 jobs:
