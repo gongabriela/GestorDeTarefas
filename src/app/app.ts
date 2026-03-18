@@ -1,10 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Sidebar } from './components/sidebar/sidebar';
 import { Navbar } from './components/navbar/navbar';
 import { DeleteModal } from './components/delete-modal/delete-modal';
 import { DeleteModalService } from './services/delete-modal-service';
-import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +11,7 @@ import { environment } from '../environments/environment';
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
-export class App implements OnInit {
-
-  ngOnInit() {
-    this.loadTaskList();
-  }
+export class App {
 
   deleteModalService = inject(DeleteModalService);
 
@@ -25,13 +20,6 @@ export class App implements OnInit {
   }
   onModalDeleteCancel() {
     this.deleteModalService.closeConfirm(false);
-  }
-
-  async loadTaskList() {
-    const response = await fetch(environment.apiUrl + '/taskList');
-    const tasks = await response.json();
-
-    console.log(tasks);
   }
 
 }
