@@ -2,6 +2,8 @@
 
 O **TaskWave** é uma aplicação web de gestão de tarefas (To-Do List & Kanban) desenvolvida como projeto final para o módulo de Fundamentos de Angular. Focada em produtividade e com um design moderno (Dark/Neon Theme), permite aos utilizadores organizar o seu dia a dia de forma visual e intuitiva.
 
+[![CI](https://github.com/gongabriela/GestorDeTarefas/actions/workflows/ci.yml/badge.svg)](https://github.com/gongabriela/GestorDeTarefas/actions/workflows/ci.yml)
+
 ## Funcionalidades Principais
 
 * **Dashboard Analítico:** Visão geral das tarefas (Total, Concluídas, Em Progresso, Atrasadas) e lista rápida de tarefas que terminam "Hoje".
