@@ -1,0 +1,59 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ "develop-idp" ]
+
+permissions:
+  contents: write # Permissão para o robô escrever na branch gh-pages
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Generate environment.ts
+        run: |
+          mkdir -p src/environments
+          cat > src/environments/environment.development.ts <<EOF
+          export const environment = {
+            production: false,
+            supabaseUrl: '${SUPABASE_URL}',
+            supabaseKey: '${SUPABASE_KEY}',
+            apiUrl: 'http://localhost:3000'
+          };
+          EOF
+          cat > src/environments/environment.ts <<EOF
+          export const environment = {
+            production: true,
+            supabaseUrl: '${SUPABASE_URL}',
+            supabaseKey: '${SUPABASE_KEY}',
+            apiUrl: 'http://localhost:3000'
+          };
+          EOF
+
+      - name: Fazer o Build Angular
+        # Usamos a flag base-href para o GitHub Pages encontrar os ficheiros
+        run: npm run build -- --base-href=/GestorDeTarefas/
+
+      - name: Publicar no GitHub Pages
+        # Esta ação pega na pasta dist e envia-a para a branch gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/GestorDeTarefas
