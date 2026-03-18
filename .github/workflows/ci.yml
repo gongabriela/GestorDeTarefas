@@ -39,6 +39,7 @@ jobs:
           cat > src/environments/environment.development.ts <<EOF
           export const environment = {
             production: false,
+            apiUrl: 'http://localhost:3001',
             supabaseUrl: '${SUPABASE_URL}',
             supabaseKey: '${SUPABASE_KEY}',
           };
@@ -46,6 +47,7 @@ jobs:
           cat > src/environments/environment.ts <<EOF
           export const environment = {
             production: true,
+            apiUrl: 'http://localhost:3001',
             supabaseUrl: '${SUPABASE_URL}',
             supabaseKey: '${SUPABASE_KEY}',
           };
