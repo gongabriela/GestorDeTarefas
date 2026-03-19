@@ -24,4 +24,6 @@ export class App {
 
 }
 
+let variavelInvalida : string = 122344;
+
 
